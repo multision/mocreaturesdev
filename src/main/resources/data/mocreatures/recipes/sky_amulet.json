@@ -1,0 +1,26 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#X#",
+    "XZX",
+    "#X#"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "dustBlaze"
+    },
+    "Z": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    }
+  },
+  "result": {
+    "item": "mocreatures:amuletpegasus",
+    "data": 0
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "mocreatures:heartfire"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:essencefire"
+  }
+}

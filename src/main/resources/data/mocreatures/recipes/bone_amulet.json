@@ -1,0 +1,26 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#X#",
+    "XZX",
+    "#X#"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "bone"
+    },
+    "Z": {
+      "type": "forge:ore_dict",
+      "ore": "enderpearl"
+    }
+  },
+  "result": {
+    "item": "mocreatures:amuletbone",
+    "data": 0
+  }
+}

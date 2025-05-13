@@ -1,0 +1,18 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "enderpearl"
+    },
+    {
+      "item": "mocreatures:heartdarkness"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:essencedarkness"
+  }
+}

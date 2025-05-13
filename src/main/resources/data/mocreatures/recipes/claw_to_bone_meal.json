@@ -1,0 +1,12 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:bigcatclaw"
+    }
+  ],
+  "result": {
+    "item": "minecraft:dye",
+    "data": 15
+  }
+}

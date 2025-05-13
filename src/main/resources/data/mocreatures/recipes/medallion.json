@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " # ",
+    "#*#",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "ingotGold"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "leather"
+    },
+    "*": {
+      "type": "forge:ore_dict",
+      "ore": "gemLapis"
+    }
+  },
+  "result": {
+    "item": "mocreatures:medallion"
+  }
+}

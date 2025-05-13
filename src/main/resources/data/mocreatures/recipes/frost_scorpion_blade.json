@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "S",
+    "G",
+    "C"
+  ],
+  "key": {
+    "S": {
+      "item": "mocreatures:scorpstingfrost",
+      "data": 32767
+    },
+    "G": {
+      "item": "minecraft:golden_sword",
+      "data": 32767
+    },
+    "C": {
+      "item": "mocreatures:chitinfrost"
+    }
+  },
+  "result": {
+    "item": "mocreatures:scorpswordfrost"
+  }
+}

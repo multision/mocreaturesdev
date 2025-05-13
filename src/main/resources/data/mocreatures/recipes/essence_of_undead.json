@@ -1,0 +1,17 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "mocreatures:heartundead"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:essenceundead"
+  }
+}

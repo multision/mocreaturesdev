@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#X#",
+    "XZX",
+    "#X#"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "bone"
+    },
+    "Z": {
+      "item": "minecraft:ghast_tear"
+    }
+  },
+  "result": {
+    "item": "mocreatures:amuletghost",
+    "data": 0
+  }
+}

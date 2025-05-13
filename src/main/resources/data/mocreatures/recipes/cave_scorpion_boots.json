@@ -1,0 +1,19 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "X X",
+    "X*X"
+  ],
+  "key": {
+    "X": {
+      "item": "mocreatures:chitinblack"
+    },
+    "*": {
+      "item": "minecraft:golden_boots",
+      "data": 32767
+    }
+  },
+  "result": {
+    "item": "mocreatures:scorpbootscave"
+  }
+}

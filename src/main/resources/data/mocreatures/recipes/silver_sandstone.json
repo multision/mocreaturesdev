@@ -1,0 +1,15 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "mocreatures:silver_sand"
+    }
+  },
+  "result": {
+    "item": "mocreatures:silver_sandstone"
+  }
+}

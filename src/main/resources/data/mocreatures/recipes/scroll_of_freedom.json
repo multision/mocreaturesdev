@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shapeless",
+  "group": "mocreatures:scrolloffreedom",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "paper"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dyeRed"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "feather"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:scrolloffreedom"
+  }
+}

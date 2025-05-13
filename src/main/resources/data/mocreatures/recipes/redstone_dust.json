@@ -1,0 +1,15 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "mocreatures:firestonechunk"
+    }
+  ],
+  "result": {
+    "item": "minecraft:redstone",
+    "count": 2
+  }
+}

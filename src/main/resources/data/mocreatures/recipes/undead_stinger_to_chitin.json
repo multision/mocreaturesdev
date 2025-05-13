@@ -1,0 +1,12 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:scorpstingundead",
+      "data": 32767
+    }
+  ],
+  "result": {
+    "item": "mocreatures:chitinundead"
+  }
+}

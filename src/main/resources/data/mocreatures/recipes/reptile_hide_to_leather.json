@@ -1,0 +1,11 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:reptilehide"
+    }
+  ],
+  "result": {
+    "item": "minecraft:leather"
+  }
+}

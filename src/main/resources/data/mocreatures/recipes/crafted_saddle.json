@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "mocreatures:saddle",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "# #"
+  ],
+  "key": {
+    "X": {
+      "item": "mocreatures:hide"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  },
+  "result": {
+    "item": "mocreatures:horsesaddle"
+  }
+}

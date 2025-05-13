@@ -1,0 +1,12 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:scorpstingcave",
+      "data": 32767
+    }
+  ],
+  "result": {
+    "item": "mocreatures:chitinblack"
+  }
+}

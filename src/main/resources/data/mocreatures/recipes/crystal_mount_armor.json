@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "  X",
+    "X#X",
+    "#X#"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "gemQuartz"
+    }
+  },
+  "result": {
+    "item": "mocreatures:horsearmorcrystal"
+  }
+}

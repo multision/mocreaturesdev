@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    }
+  },
+  "result": {
+    "item": "mocreatures:kittylitter"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:cobbled_wyvstone"
+    },
+    {
+      "item": "mocreatures:tall_wyvgrass"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:mossy_cobbled_wyvstone"
+  }
+}

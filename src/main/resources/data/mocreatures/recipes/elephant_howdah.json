@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "RRR",
+    "X#X",
+    "XRX"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "ingotGold"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "wool"
+    }
+  },
+  "result": {
+    "item": "mocreatures:elephanthowdah"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "mocreatures:kittybed",
+  "pattern": [
+    "#X#",
+    "X X",
+    "# Z"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "#": {
+      "item": "minecraft:wool",
+      "data": 14
+    },
+    "Z": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  },
+  "result": {
+    "item": "mocreatures:kittybed_red"
+  }
+}

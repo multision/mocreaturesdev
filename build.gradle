@@ -1,0 +1,128 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+group = 'drzhark.mocreatures'
+version = '1.16.5-1.0.0'
+
+java {
+    archivesBaseName = 'mocreatures'
+    toolchain.languageVersion = JavaLanguageVersion.of(8)
+}
+
+minecraft {
+    mappings channel: 'snapshot', version: '20210309-1.16.5'
+
+    accessTransformer = file('src/main/resources/META-INF/mocreatures_at.cfg')
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                mocreatures {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                mocreatures {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'mocreatures', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                mocreatures {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    maven {
+        name 'CurseMaven'
+        url 'https://cursemaven.com'
+        content {
+            includeGroup 'curse.maven'
+        }
+    }
+    maven { url 'https://maven.blamejared.com/' }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.42'
+
+    //implementation fg.deobf ("curse.maven:cofh-core-69162:4022663")
+    //implementation rfg.deobf("curse.maven:future-mc-310059:3924863")
+    //implementation rfg.deobf("curse.maven:thaumcraft-223628:2629023")
+    //implementation fg.deobf ("curse.maven:thermal-expansion-69163:4063134")
+    //implementation fg.deobf ("curse.maven:thermal-foundation-222880:4022666")
+    //implementation "com.buuz135:industrial-foregoing:1.16.5-3.2.14.7-16"
+    //implementation "curse.maven:just-enough-resources-jer-240630:4526616"
+    //implementation fg.deobf ("curse.maven:morph-229080:4397367")
+    //runtimeOnly fg.deobf ('com.hrznstudio:titanium:1.16.5-3.2.8.3-1')
+
+    //implementation "curse.maven:pams-harvestcraft-221857:2904825"
+
+    //runtimeOnly "curse.maven:baubles-227083:2518667"
+    //runtimeOnly "curse.maven:codechicken-lib-1-8-242818:2779848"
+    //runtimeOnly "curse.maven:cofh-world-271384:2920434"
+    //runtimeOnly "curse.maven:ichunutil-229060:2801262"
+    //runtimeOnly "curse.maven:jei-238222:4538010"
+    //runtimeOnly "curse.maven:redstone-flux-270789:2920436"
+    //runtimeOnly "curse.maven:shadowfacts-forgelin-248453:2785465"
+    //runtimeOnly "curse.maven:tesla-core-lib-254602:3438487"
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "mocreatures",
+                //"Specification-Vendor": "mocreatures authors",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                //"Implementation-Vendor": "mocreatures authors",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')

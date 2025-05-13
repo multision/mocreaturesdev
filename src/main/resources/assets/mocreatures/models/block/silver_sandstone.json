@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "bottom": "mocreatures:blocks/sandstone_silver_bottom",
+    "top": "mocreatures:blocks/sandstone_silver_top",
+    "side": "mocreatures:blocks/sandstone_silver_normal"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "minecraft:pumpkin_seeds"
+    },
+    {
+      "item": "mocreatures:ratcooked"
+    },
+    {
+      "item": "minecraft:tallgrass",
+      "data": 1
+    }
+  ],
+  "result": {
+    "item": "mocreatures:ratburger"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#X#",
+    "X X",
+    "# Z"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "leather"
+    },
+    "#": {
+      "item": "mocreatures:bigcatclaw"
+    },
+    "Z": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  },
+  "result": {
+    "item": "mocreatures:whip"
+  }
+}

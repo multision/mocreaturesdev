@@ -1,0 +1,27 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "***",
+    "FMF",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "wool"
+    },
+    "F": {
+      "item": "mocreatures:fur"
+    },
+    "M": {
+      "item": "mocreatures:medallion"
+    },
+    "*": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+    }
+  },
+  "result": {
+    "item": "mocreatures:elephantgarment"
+  }
+}

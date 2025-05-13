@@ -1,0 +1,15 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "mocreatures:fur"
+    }
+  },
+  "result": {
+    "item": "minecraft:wool",
+    "data": 0
+  }
+}

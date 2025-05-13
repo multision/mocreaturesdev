@@ -1,0 +1,12 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:haystack"
+    }
+  ],
+  "result": {
+    "item": "minecraft:wheat",
+    "count": 6
+  }
+}

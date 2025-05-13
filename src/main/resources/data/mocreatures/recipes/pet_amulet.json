@@ -1,0 +1,22 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "X X",
+    " # ",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    }
+  },
+  "result": {
+    "item": "mocreatures:petamulet",
+    "data": 0
+  }
+}

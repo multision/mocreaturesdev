@@ -1,0 +1,12 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:wyvwood_log"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:wyvwood_planks",
+    "count": 4
+  }
+}

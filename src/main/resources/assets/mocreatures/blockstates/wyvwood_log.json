@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "mocreatures:block/wyvwood_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "mocreatures:block/wyvwood_log"
+    },
+    "axis=z": {
+      "model": "mocreatures:block/wyvwood_log_horizontal",
+      "x": 90
+    }
+  }
+}

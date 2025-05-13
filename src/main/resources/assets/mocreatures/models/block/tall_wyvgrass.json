@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "mocreatures:blocks/tall_grass_wyvern"
+  }
+}

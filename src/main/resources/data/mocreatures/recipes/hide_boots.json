@@ -1,0 +1,15 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "mocreatures:hide"
+    }
+  },
+  "result": {
+    "item": "mocreatures:hideboots"
+  }
+}

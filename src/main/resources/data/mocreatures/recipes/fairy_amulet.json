@@ -1,0 +1,26 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "mocreatures:amuletfairy",
+  "pattern": [
+    "#X#",
+    "XZX",
+    "#X#"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "dustBlaze"
+    },
+    "Z": {
+      "item": "mocreatures:unicornhorn"
+    }
+  },
+  "result": {
+    "item": "mocreatures:amuletfairy",
+    "data": 0
+  }
+}

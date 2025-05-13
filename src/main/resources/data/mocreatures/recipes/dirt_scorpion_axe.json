@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "SC",
+    "CG",
+    " C"
+  ],
+  "key": {
+    "S": {
+      "item": "mocreatures:scorpstingdirt",
+      "data": 32767
+    },
+    "G": {
+      "item": "minecraft:golden_axe",
+      "data": 32767
+    },
+    "C": {
+      "item": "mocreatures:chitin"
+    }
+  },
+  "result": {
+    "item": "mocreatures:scorpaxedirt"
+  }
+}

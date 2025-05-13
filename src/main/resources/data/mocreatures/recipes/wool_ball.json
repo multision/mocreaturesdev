@@ -1,0 +1,17 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " X ",
+    "X X",
+    " X "
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "string"
+    }
+  },
+  "result": {
+    "item": "mocreatures:woolball"
+  }
+}

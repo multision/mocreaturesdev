@@ -1,0 +1,12 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:firestone"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:firestonechunk",
+    "count": 4
+  }
+}

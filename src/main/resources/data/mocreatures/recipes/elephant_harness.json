@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "X#X",
+    "RXR",
+    "#X#"
+  ],
+  "key": {
+    "X": {
+      "item": "mocreatures:hide"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "wool"
+    },
+    "R": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  },
+  "result": {
+    "item": "mocreatures:elephantharness"
+  }
+}

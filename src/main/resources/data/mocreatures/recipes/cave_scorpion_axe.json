@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "SC",
+    "CG",
+    " C"
+  ],
+  "key": {
+    "S": {
+      "item": "mocreatures:scorpstingcave",
+      "data": 32767
+    },
+    "G": {
+      "item": "minecraft:golden_axe",
+      "data": 32767
+    },
+    "C": {
+      "item": "mocreatures:chitinblack"
+    }
+  },
+  "result": {
+    "item": "mocreatures:scorpaxecave"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "mocreatures:haystack"
+  }
+}

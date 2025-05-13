@@ -1,0 +1,8 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "": {
+      "model": "mocreatures:block/tall_wyvgrass"
+    }
+  }
+}

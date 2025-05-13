@@ -1,0 +1,34 @@
+// drzhark.mocreatures.worldgen.MoCWorldGenEvents.java
+package drzhark.mocreatures.dimension.worldgen;
+
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+@Mod.EventBusSubscriber(modid = "mocreatures", bus = Mod.EventBusSubscriber.Bus.FORGE)
+public class MoCWorldGenEvents {
+
+    @SubscribeEvent
+    public static void onBiomeLoad(BiomeLoadingEvent event) {
+        if (event.getName() == null) return;
+
+
+        // Only target Wyvern Lair biomes
+        if (event.getName().getNamespace().equals("mocreatures") &&
+                event.getName().getPath().startsWith("wyvernlair")) {
+
+            System.out.println("[MoC] Injecting tall_wyvgrass into biome: " + event.getName());
+
+
+            if (MoCFeatures.TALL_WYVGRASS_CONFIGURED != null) {
+                event.getGeneration()
+                        .getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION)
+                        .add(() -> MoCFeatures.TALL_WYVGRASS_CONFIGURED);
+            } else {
+                System.out.println("[MoC] Warning: ConfiguredFeature is still null during biome load!");
+            }
+        }
+    }
+}

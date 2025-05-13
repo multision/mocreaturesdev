@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "mocreatures",
+    "name": "DrZhark's Mo'Creatures Extended",
+    "description": "This mod adds many more creatures to Minecraft.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://github.com/ACGaming/MoCreaturesExtended",
+    "authorList": [
+      "DrZhark",
+      "ACGaming",
+      "IcarussOne",
+      "xJon"
+    ],
+    "credits": "\n \u00A7eExtended Team [v12.1.0 and upwards]:\n [*] ACGaming - Lead Developer\n [*] IcarussOne - Developer & Sound Artist\n [*] xJon - QA Analyst & Tester\n \u00A7eLegacy Team [v12.0.5 and below]:\n [*] DrZhark - Author & Lead Developer\n [*] BlockDaddy - Model & Texture Artist\n [*] Bloodshot - Coder\n \u00A76Special Thanks:\n [*] Dockter - Initial Project Setup, Bugfixes, and Turkey Breeding\n [*] Daveyx0 - Filch Lizards from Primitive Mobs (with permission!)\n [*] MCThe_Paragon (Malcolm Riley) - Some assets used from their texture repository\n [*] Foreck - New Shark Model\n \u00A7dOther Contributors:\n [*] nocturni - French Translation\n [*] Deino - Tweaked Donkey & Mule Textures",
+    "logoFile": "moclogo.png"
+  }
+]

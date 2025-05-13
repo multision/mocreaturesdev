@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:essencefire"
+    },
+    {
+      "item": "mocreatures:essencedarkness"
+    },
+    {
+      "item": "mocreatures:essenceundead"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustGlowstone"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:essencelight"
+  }
+}

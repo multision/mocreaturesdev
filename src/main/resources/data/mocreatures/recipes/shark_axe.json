@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#X#",
+    "#X#",
+    " S "
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "#": {
+      "item": "mocreatures:sharkteeth"
+    }
+  },
+  "result": {
+    "item": "mocreatures:sharkaxe"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "pools": [
+    {
+      "conditions": [
+        {
+          "condition": "killed_by_player"
+        },
+        {
+          "condition": "random_chance",
+          "chance": 0.05
+        }
+      ],
+      "name": "jellyfish",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:slime_ball",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

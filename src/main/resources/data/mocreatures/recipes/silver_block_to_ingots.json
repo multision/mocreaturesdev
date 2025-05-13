@@ -1,0 +1,12 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "mocreatures:ancient_silver_block"
+    }
+  ],
+  "result": {
+    "item": "mocreatures:ancientsilveringot",
+    "count": 9
+  }
+}

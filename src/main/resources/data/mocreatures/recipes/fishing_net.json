@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " # ",
+    "X#X",
+    "#X#"
+  ],
+  "key": {
+    "X": {
+      "item": "mocreatures:sharkteeth"
+    },
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "string"
+    }
+  },
+  "result": {
+    "item": "mocreatures:fishnet",
+    "data": 0
+  }
+}

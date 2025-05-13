@@ -1,0 +1,117 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": "mocreatures:ancient_ore"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "functions": [
+        {
+          "function": "minecraft:apply_bonus",
+          "enchantment": "minecraft:fortune",
+          "formula": "minecraft:ore_drops"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:quartz",
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.3
+                }
+              ]
+            },{
+              "type": "minecraft:item",
+              "name": "minecraft:coal",
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.2
+                }
+              ]
+            },{
+              "type": "minecraft:item",
+              "name": "mocreatures:ancientsilverscrap",
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.2
+                }
+              ]
+            },{
+              "type": "minecraft:item",
+              "name": "minecraft:skeleton_skull",
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.02
+                }
+              ]
+            },{
+              "type": "minecraft:item",
+              "name": "minecraft:bone"
+          }
+        ]
+      }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:alternative",
+            "terms": [
+              {
+                "condition": "minecraft:match_tool",
+                "predicate": {
+                  "enchantments": [
+                    {
+                      "enchantment": "minecraft:silk_touch",
+                      "levels": {
+                        "min": 1
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

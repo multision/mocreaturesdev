@@ -1,0 +1,20 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "X  ",
+    "X# ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    },
+    "#": {
+      "item": "minecraft:lead"
+    }
+  },
+  "result": {
+    "item": "mocreatures:tusksdiamond"
+  }
+}
