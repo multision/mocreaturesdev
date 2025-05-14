@@ -65,9 +65,9 @@ public class MoCRenderMoC<T extends MobEntity, M extends EntityModel<T>> extends
     public void renderMoC(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         IMoCEntity entityMoC = (IMoCEntity) entityIn;
-        boolean flag = MoCreatures.proxy.getDisplayPetName() && !(entityMoC.getPetName().isEmpty());
-        boolean flag1 = MoCreatures.proxy.getDisplayPetHealth();
-        if (entityMoC.getIsTamed()) {
+        boolean flag = MoCreatures.proxy.getDisplayPetName() && !(entityMoC.getPetName().isEmpty()) && (entityIn.getPassengers().isEmpty());
+        boolean flag1 = MoCreatures.proxy.getDisplayPetHealth() && (entityIn.getPassengers().isEmpty());
+        if (entityMoC.getIsTamed() && (entityIn.getPassengers().isEmpty())) {
             float f2 = 1.6F;
             float f3 = 0.01666667F * f2;
             float f5 = (float) this.renderManager.squareDistanceTo((Entity) entityMoC);
