@@ -15,6 +15,9 @@ import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -28,6 +31,7 @@ import java.util.List;
 
 public class MoCEventHooks {
 
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onWorldUnload(WorldEvent.Unload event) {
         // if overworld has been deleted or unloaded, reset our flag
@@ -36,11 +40,27 @@ public class MoCEventHooks {
         }
     }
 
+    /*@OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void onWorldLoad(WorldEvent.Load event) {
         if (event.getWorld() != null && !MoCreatures.proxy.worldInitDone) // if overworld has loaded, use its mapstorage
         {
             MoCPetMapData data = ServerLifecycleHooks.getCurrentServer().getWorld(World.OVERWORLD).getSavedData().getOrCreate(() -> new MoCPetMapData(MoCConstants.MOD_ID), MoCConstants.MOD_ID);
+            MoCreatures.instance.mapData = data;
+            MoCreatures.proxy.worldInitDone = true;
+        }
+    }*/
+
+    @SubscribeEvent
+    public void onWorldLoad(WorldEvent.Load event) {
+        if (!(event.getWorld() instanceof ServerWorld)) return;
+
+        ServerWorld serverWorld = (ServerWorld) event.getWorld();
+        if (serverWorld.getDimensionKey() != World.OVERWORLD) return;
+
+        if (!MoCreatures.proxy.worldInitDone) {
+            MoCPetMapData data = serverWorld.getSavedData().getOrCreate(
+                    () -> new MoCPetMapData(MoCConstants.MOD_ID), MoCConstants.MOD_ID);
             MoCreatures.instance.mapData = data;
             MoCreatures.proxy.worldInitDone = true;
         }

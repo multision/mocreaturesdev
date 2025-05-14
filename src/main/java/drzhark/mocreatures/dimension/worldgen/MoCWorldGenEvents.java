@@ -3,6 +3,8 @@ package drzhark.mocreatures.dimension.worldgen;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -10,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = "mocreatures", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MoCWorldGenEvents {
 
+    @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onBiomeLoad(BiomeLoadingEvent event) {
         if (event.getName() == null) return;
