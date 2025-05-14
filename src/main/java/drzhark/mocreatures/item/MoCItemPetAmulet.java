@@ -79,7 +79,7 @@ public class  MoCItemPetAmulet extends MoCItem {
                 return new ActionResult<>(ActionResultType.SUCCESS, stack);
             }
             try {
-                this.spawnClass = this.spawnClass.replace(MoCConstants.MOD_PREFIX, "").toLowerCase();
+                this.spawnClass = this.spawnClass.replace(MoCConstants.MOD_PREFIX, "").toLowerCase().replace(" ", "");
                 if (this.spawnClass.equalsIgnoreCase("MoCHorse")) {
                     this.spawnClass = "WildHorse";
                 } else if (this.spawnClass.equalsIgnoreCase("PolarBear")) {

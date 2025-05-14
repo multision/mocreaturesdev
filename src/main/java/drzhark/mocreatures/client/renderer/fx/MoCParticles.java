@@ -14,4 +14,8 @@ public class MoCParticles {
 
     public static final RegistryObject<BasicParticleType> UNDEAD_FX =
             PARTICLES.register("undead_fx", () -> new BasicParticleType(false));
+
+    public static final RegistryObject<BasicParticleType> VANISH_FX =
+            PARTICLES.register("vanish_fx", () -> new BasicParticleType(false));
+
 }

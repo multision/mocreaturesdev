@@ -11,10 +11,7 @@ import drzhark.mocreatures.client.model.legacy.MoCLegacyModelBigCat1;
 import drzhark.mocreatures.client.model.legacy.MoCLegacyModelBigCat2;
 import drzhark.mocreatures.client.renderer.entity.*;
 import drzhark.mocreatures.client.renderer.entity.legacy.MoCLegacyRenderBigCat;
-import drzhark.mocreatures.client.renderer.fx.MoCEntityFXStar;
-import drzhark.mocreatures.client.renderer.fx.MoCEntityFXUndead;
-import drzhark.mocreatures.client.renderer.fx.MoCEntityFXVacuum;
-import drzhark.mocreatures.client.renderer.fx.MoCEntityFXVanish;
+import drzhark.mocreatures.client.renderer.fx.*;
 import drzhark.mocreatures.client.renderer.texture.MoCTextures;
 import drzhark.mocreatures.entity.IMoCEntity;
 import drzhark.mocreatures.entity.hostile.*;
@@ -271,46 +268,52 @@ public class MoCProxyClient extends MoCProxy {
 
     @Override
     public void VanishFX(MoCEntityHorse entity) {
-        int densityInt = (MoCreatures.proxy.getParticleFX());
-        if (densityInt == 0) {
-            return;
-        }
+        int densityInt = MoCreatures.proxy.getParticleFX();
+        if (densityInt == 0) return;
 
-        for (int var6 = 0; var6 < densityInt * 8; ++var6) {
-            double newPosX = ((float) entity.getPosX() + entity.world.rand.nextFloat());
-            double newPosY = 0.7D + ((float) entity.getPosY() + entity.world.rand.nextFloat());
-            double newPosZ = ((float) entity.getPosZ() + entity.world.rand.nextFloat());
-            int var19 = entity.world.rand.nextInt(2) * 2 - 1;
-            double speedY = (entity.world.rand.nextFloat() - 0.5D) * 0.5D;
-            double speedX = entity.world.rand.nextFloat() * 2.0F * var19;
-            double speedZ = entity.world.rand.nextFloat() * 2.0F * var19;
+        ClientWorld world = (ClientWorld) entity.world;
 
-            MoCEntityFXVanish FXVanish = new MoCEntityFXVanish((ClientWorld) entity.world, newPosX, newPosY, newPosZ, speedX, speedY, speedZ, entity.colorFX(1, entity.getTypeMoC()), entity.colorFX(2, entity.getTypeMoC()), entity.colorFX(3, entity.getTypeMoC()), false);
-            mc.particles.addEffect(FXVanish);
+        for (int i = 0; i < densityInt * 8; ++i) {
+            double newPosX = entity.getPosX() + world.rand.nextFloat();
+            double newPosY = entity.getPosY() + 0.7D + world.rand.nextFloat();
+            double newPosZ = entity.getPosZ() + world.rand.nextFloat();
+            int sign = world.rand.nextInt(2) * 2 - 1;
+            double speedX = world.rand.nextFloat() * 2.0F * sign;
+            double speedY = (world.rand.nextFloat() - 0.5D) * 0.5D;
+            double speedZ = world.rand.nextFloat() * 2.0F * sign;
+
+            world.addParticle(
+                    MoCParticles.VANISH_FX.get(), // Registered type
+                    newPosX, newPosY, newPosZ,    // Position
+                    speedX, speedY, speedZ        // Velocity
+            );
         }
     }
 
     @Override
     public void MaterializeFX(MoCEntityHorse entity) {
-        int densityInt = (MoCreatures.proxy.getParticleFX());
-        if (densityInt == 0) {
-            return;
+        int densityInt = MoCreatures.proxy.getParticleFX();
+        if (densityInt == 0) return;
+
+        ClientWorld world = (ClientWorld) entity.world;
+
+        for (int i = 0; i < (densityInt * 50); ++i) {
+            double newPosX = entity.getPosX() + world.rand.nextFloat();
+            double newPosY = entity.getPosY() + 0.7D + world.rand.nextFloat();
+            double newPosZ = entity.getPosZ() + world.rand.nextFloat();
+            int sign = world.rand.nextInt(2) * 2 - 1;
+            double speedX = world.rand.nextFloat() * 2.0F * sign;
+            double speedY = (world.rand.nextFloat() - 0.5D) * 0.5D;
+            double speedZ = world.rand.nextFloat() * 2.0F * sign;
+
+            world.addParticle(
+                    MoCParticles.VANISH_FX.get(), // You can use a different type if needed
+                    newPosX, newPosY, newPosZ,
+                    speedX, speedY, speedZ
+            );
         }
-
-        for (int var6 = 0; var6 < (densityInt * 50); ++var6) {
-            double newPosX = ((float) entity.getPosX() + entity.world.rand.nextFloat());
-            double newPosY = 0.7D + ((float) entity.getPosY() + entity.world.rand.nextFloat());
-            double newPosZ = ((float) entity.getPosZ() + entity.world.rand.nextFloat());
-            int var19 = entity.world.rand.nextInt(2) * 2 - 1;
-            double speedY = (entity.world.rand.nextFloat() - 0.5D) * 0.5D;
-            double speedX = entity.world.rand.nextFloat() * 2.0F * var19;
-            double speedZ = entity.world.rand.nextFloat() * 2.0F * var19;
-
-            MoCEntityFXVanish FXVanish = new MoCEntityFXVanish(mc.world, newPosX, newPosY, newPosZ, speedX, speedY, speedZ, entity.colorFX(1, entity.getTypeMoC()), entity.colorFX(2, entity.getTypeMoC()), entity.colorFX(3, entity.getTypeMoC()), true);
-            mc.particles.addEffect(FXVanish);
-        }
-
     }
+
 
     @Override
     public void VacuumFX(MoCEntityGolem entity) {
@@ -376,8 +379,11 @@ public class MoCProxyClient extends MoCProxy {
             double speedX = entity.world.rand.nextFloat() * 2.0F * var19;
             double speedZ = entity.world.rand.nextFloat() * 2.0F * var19;
 
-            MoCEntityFXVanish hammerFX = new MoCEntityFXVanish(mc.world, newPosX, newPosY, newPosZ, speedX, speedY, speedZ, 189F / 256F, 110F / 256F, 229F / 256F, true);
-            mc.particles.addEffect(hammerFX);
+            mc.world.addParticle(
+                    MoCParticles.VANISH_FX.get(), // You can use a different type if needed
+                    newPosX, newPosY, newPosZ,
+                    speedX, speedY, speedZ
+            );
         }
 
     }

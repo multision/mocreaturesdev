@@ -2,6 +2,7 @@ package drzhark.mocreatures.shaders;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import drzhark.mocreatures.client.renderer.fx.MoCEntityFXUndead;
+import drzhark.mocreatures.client.renderer.fx.MoCEntityFXVanish;
 import drzhark.mocreatures.client.renderer.fx.MoCParticles;
 import drzhark.mocreatures.init.MoCBlocks;
 import net.minecraft.client.Minecraft;
@@ -17,7 +18,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = "mocreatures", value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MoCClientEvents {
 
-    public static IAnimatedSprite UNDEAD_SPRITE_SET;
+    public static IAnimatedSprite UNDEAD_SPRITE_SET, VANISH_SPRITE_SET;
 
     @SubscribeEvent
     public static void onParticleFactoryRegister(ParticleFactoryRegisterEvent event) {
@@ -28,6 +29,15 @@ public class MoCClientEvents {
                     return new MoCEntityFXUndead.Factory(spriteSet);
                 }
         );
+
+        Minecraft.getInstance().particles.registerFactory(
+                MoCParticles.VANISH_FX.get(),
+                spriteSet -> {
+                    VANISH_SPRITE_SET = spriteSet;
+                    return new MoCEntityFXVanish.Factory(spriteSet);
+                }
+        );
+
     }
 
     @SubscribeEvent
