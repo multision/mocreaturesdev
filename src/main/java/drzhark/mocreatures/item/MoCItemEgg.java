@@ -45,77 +45,89 @@ public class MoCItemEgg extends MoCItem {
         return new ActionResult<>(ActionResultType.SUCCESS, stack);
     }
 
-    /*
+
     @Override
     @OnlyIn(Dist.CLIENT)
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
         if (!this.isInGroup(group)) return;
 
         // Fish eggs
-        int length = MoCEntityFishy.fishNames.length;
-        for (int i = 0; i < length; i++) { // fishy
+        for (int i = 0; i <= 10; i++) { // Fishy
             ItemStack stack = new ItemStack(this);
             stack.getOrCreateTag().putInt("EggType", i);
             items.add(stack);
         }
 
-        length = MoCEntitySmallFish.fishNames.length;
-        for (int i = 0; i < length; i++) { // small fish
-            ItemStack stack = new ItemStack(this);
-            stack.getOrCreateTag().putInt("EggType", 80 + i);
-            items.add(stack);
-        }
-
-        length = MoCEntityMediumFish.fishNames.length;
-        for (int i = 0; i < length; i++) { // medium fish
-            ItemStack stack = new ItemStack(this);
-            stack.getOrCreateTag().putInt("EggType", 70 + i);
-            items.add(stack);
-        }
-
-        // piranha
-        ItemStack piranha = new ItemStack(this);
-        piranha.getOrCreateTag().putInt("EggType", 90);
-        items.add(piranha);
-
-        // shark
+        // Shark
         ItemStack shark = new ItemStack(this);
         shark.getOrCreateTag().putInt("EggType", 11);
         items.add(shark);
 
-        // snakes
-        for (int i = 21; i < 28; i++) {
+        // Snakes
+        for (int i = 21; i <= 28; i++) { // Snakes
             ItemStack snakeEgg = new ItemStack(this);
             snakeEgg.getOrCreateTag().putInt("EggType", i);
             items.add(snakeEgg);
         }
 
-        // ostrich & stolen ostrich
+        // Ostrich & Stolen Ostrich
         for (int i : new int[] {30, 31}) {
             ItemStack ostrichEgg = new ItemStack(this);
             ostrichEgg.getOrCreateTag().putInt("EggType", i);
             items.add(ostrichEgg);
         }
 
-        // komodo
+        // Komodo Dragon
         ItemStack komodo = new ItemStack(this);
         komodo.getOrCreateTag().putInt("EggType", 33);
         items.add(komodo);
 
-        // scorpions
-        for (int i = 41; i < 46; i++) {
+        // Scorpions
+        for (int i = 41; i <= 45; i++) {
             ItemStack scorpion = new ItemStack(this);
             scorpion.getOrCreateTag().putInt("EggType", i);
             items.add(scorpion);
         }
 
-        // wyverns, manticores
-        for (int i = 50; i < 67; i++) {
+        // Wyverns
+        for (int i = 50; i <= 61; i++) {
             ItemStack wyvern = new ItemStack(this);
             wyvern.getOrCreateTag().putInt("EggType", i);
             items.add(wyvern);
         }
-    }*/
+
+        // Manticores
+        for (int i = 62; i <= 66; i++) {
+            ItemStack manticore = new ItemStack(this);
+            manticore.getOrCreateTag().putInt("EggType", i);
+            items.add(manticore);
+        }
+
+        // Medium Fish
+        for (int i = 70; i <= 72; i++) {
+            ItemStack fish = new ItemStack(this);
+            fish.getOrCreateTag().putInt("EggType", i);
+            items.add(fish);
+        }
+
+        // Small Fish
+        for (int i = 80; i <= 86; i++) {
+            ItemStack fish = new ItemStack(this);
+            fish.getOrCreateTag().putInt("EggType", i);
+            items.add(fish);
+        }
+
+        // Piranha
+        ItemStack piranha = new ItemStack(this);
+        piranha.getOrCreateTag().putInt("EggType", 90);
+        items.add(piranha);
+    }
+
+    @Override
+    public String getTranslationKey(ItemStack itemstack) {
+        int eggType = itemstack.getOrCreateTag().getInt("EggType");
+        return getTranslationKey() + "." + eggType;  // item.mocreatures.mocegg.0, item.mocreatures.mocegg.1, etc.
+    }
 
 
 //    @Override //TODO TheidenHD
