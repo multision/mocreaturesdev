@@ -39,7 +39,6 @@ public class MoCMessageNameGUI {
         return true;
     }
 
-
     @Override
     public String toString() {
         return String.format("MoCMessageNameGUI - entityId:%s", this.entityId);

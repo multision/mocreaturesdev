@@ -480,9 +480,7 @@ public class MoCEntityEgg extends MobEntity {
     private void notifyEggHatching() {
         PlayerEntity player = this.world.getClosestPlayer(this, 24D);
         if (player != null) {
-            player.sendStatusMessage(new StringTextComponent(
-                    "A creature egg is about to hatch at X:" +
-                            (int) this.getPosX() + " Y:" + (int) this.getPosY() + " Z:" + (int) this.getPosZ()), false);
+            player.sendMessage(new TranslationTextComponent("msg.mocreatures.egg", (int) this.getPosX(), (int) this.getPosY(), (int) this.getPosZ()), player.getUniqueID());
         }
     }
 

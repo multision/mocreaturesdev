@@ -32,6 +32,16 @@ public class MoCWorldGenEvents {
             } else {
                 System.out.println("[MoC] Warning: ConfiguredFeature is still null during biome load!");
             }
+
+            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_IRON_ORE);
+            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_GOLD_ORE);
+            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_LAPIS_ORE);
+            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_EMERALD_ORE);
+            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_DIAMOND_ORE);
+            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_ANCIENT_ORE);
+
+            event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_DECORATION)
+                    .add(() -> MoCFeatures.WYV_FIRESTONE_CLUSTER);
         }
     }
 }
