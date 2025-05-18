@@ -7,12 +7,10 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "plankWood"
+      "tag": "minecraft:planks"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "tag": "forge:sand"
     }
   },
   "result": {

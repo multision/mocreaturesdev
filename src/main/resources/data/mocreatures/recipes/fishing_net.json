@@ -10,12 +10,10 @@
       "item": "mocreatures:sharkteeth"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "string"
+      "tag": "forge:string"
     }
   },
   "result": {
-    "item": "mocreatures:fishnet",
-    "data": 0
+    "item": "mocreatures:fishnet"
   }
 }

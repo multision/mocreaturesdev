@@ -7,15 +7,13 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "logWood"
+      "tag": "forge:logwood"
     },
     "#": {
       "item": "minecraft:lead"
     },
     "R": {
-      "type": "forge:ore_dict",
-      "ore": "plankWood"
+      "tag": "minecraft:planks"
     }
   },
   "result": {

@@ -7,16 +7,13 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "ingotGold"
+      "tag": "minecraft:gold_ingot"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "leather"
+      "tag": "forge:leather"
     },
     "*": {
-      "type": "forge:ore_dict",
-      "ore": "gemLapis"
+      "tag": "forge:gemlapis"
     }
   },
   "result": {

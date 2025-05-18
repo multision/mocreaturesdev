@@ -7,20 +7,16 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "nuggetGold"
+      "tag": "minecraft:gold_nugget"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "bone"
+      "tag": "forge:bone"
     },
     "Z": {
-      "type": "forge:ore_dict",
-      "ore": "enderpearl"
+      "tag": "forge:enderpearl"
     }
   },
   "result": {
-    "item": "mocreatures:amuletbone",
-    "data": 0
+    "item": "mocreatures:amuletbone"
   }
 }

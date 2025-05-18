@@ -7,8 +7,7 @@
   ],
   "key": {
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "wool"
+      "tag": "forge:wool"
     },
     "F": {
       "item": "mocreatures:fur"
@@ -17,8 +16,7 @@
       "item": "mocreatures:medallion"
     },
     "*": {
-      "type": "forge:ore_dict",
-      "ore": "nuggetGold"
+      "tag": "minecraft:gold_nugget"
     }
   },
   "result": {

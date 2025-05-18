@@ -8,16 +8,14 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "plankWood"
+      "tag": "minecraft:planks"
     },
     "#": {
-      "item": "minecraft:wool",
+      "item": "minecraft:white_wool",
       "data": 2
     },
     "Z": {
-      "type": "forge:ore_dict",
-      "ore": "ingotIron"
+      "tag": "forge:ingotiron"
     }
   },
   "result": {

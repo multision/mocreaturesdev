@@ -7,16 +7,13 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "plankWood"
+      "tag": "minecraft:planks"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "ingotGold"
+      "tag": "minecraft:gold_ingot"
     },
     "R": {
-      "type": "forge:ore_dict",
-      "ore": "wool"
+      "tag": "forge:wool"
     }
   },
   "result": {

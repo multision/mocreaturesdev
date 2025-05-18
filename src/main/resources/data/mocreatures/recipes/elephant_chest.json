@@ -7,12 +7,10 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "wool"
+      "tag": "forge:wool"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "chestWood"
+      "tag": "forge:chestwood"
     },
     "R": {
       "item": "mocreatures:hide"

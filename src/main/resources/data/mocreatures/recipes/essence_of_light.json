@@ -11,8 +11,7 @@
       "item": "mocreatures:essenceundead"
     },
     {
-      "type": "forge:ore_dict",
-      "ore": "dustGlowstone"
+      "tag": "forge:dustglowstone"
     }
   ],
   "result": {

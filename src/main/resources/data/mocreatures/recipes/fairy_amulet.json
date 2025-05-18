@@ -8,19 +8,16 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "nuggetGold"
+      "tag": "minecraft:gold_nugget"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "dustBlaze"
+      "tag": "forge:dustblaze"
     },
     "Z": {
       "item": "mocreatures:unicornhorn"
     }
   },
   "result": {
-    "item": "mocreatures:amuletfairy",
-    "data": 0
+    "item": "mocreatures:amuletfairy"
   }
 }

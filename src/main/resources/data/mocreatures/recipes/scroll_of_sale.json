@@ -2,16 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "type": "forge:ore_dict",
-      "ore": "paper"
+      "tag": "forge:paper"
     },
     {
-      "type": "forge:ore_dict",
-      "ore": "dyeBlack"
+      "tag": "forge:dyeblack"
     },
     {
-      "type": "forge:ore_dict",
-      "ore": "feather"
+      "tag": "forge:feather"
     }
   ],
   "result": {

@@ -10,8 +10,7 @@
       "item": "mocreatures:ancientsilveringot"
     },
     "I": {
-      "type": "forge:ore_dict",
-      "ore": "ingotIron"
+      "tag": "forge:ingotiron"
     }
   },
   "result": {

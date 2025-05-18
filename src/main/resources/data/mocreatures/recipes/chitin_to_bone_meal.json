@@ -2,13 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "type": "forge:ore_dict",
-      "ore": "chitinScorpion"
+      "tag": "forge:chitinscorpion"
     }
   ],
   "result": {
     "item": "minecraft:dye",
-    "data": 15,
     "count": 2
   }
 }

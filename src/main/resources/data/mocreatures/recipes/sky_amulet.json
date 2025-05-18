@@ -7,20 +7,16 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "nuggetGold"
+      "tag": "minecraft:gold_nugget"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "dustBlaze"
+      "tag": "forge:dustblaze"
     },
     "Z": {
-      "type": "forge:ore_dict",
-      "ore": "gemDiamond"
+      "tag": "minecraft:diamond"
     }
   },
   "result": {
-    "item": "mocreatures:amuletpegasus",
-    "data": 0
+    "item": "mocreatures:amuletpegasus"
   }
 }

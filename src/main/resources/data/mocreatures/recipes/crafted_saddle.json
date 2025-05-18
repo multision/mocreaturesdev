@@ -11,8 +11,7 @@
       "item": "mocreatures:hide"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "ingotIron"
+      "tag": "forge:ingotiron"
     }
   },
   "result": {

@@ -10,12 +10,10 @@
       "item": "mocreatures:hide"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "wool"
+      "tag": "forge:wool"
     },
     "R": {
-      "type": "forge:ore_dict",
-      "ore": "ingotIron"
+      "tag": "forge:ingotiron"
     }
   },
   "result": {

@@ -7,16 +7,13 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "nuggetGold"
+      "tag": "minecraft:gold_nugget"
     },
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "gemDiamond"
+      "tag": "minecraft:diamond"
     }
   },
   "result": {
-    "item": "mocreatures:petamulet",
-    "data": 0
+    "item": "mocreatures:petamulet"
   }
 }

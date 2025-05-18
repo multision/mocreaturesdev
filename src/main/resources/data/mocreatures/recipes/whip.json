@@ -7,15 +7,13 @@
   ],
   "key": {
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "leather"
+      "tag": "forge:leather"
     },
     "#": {
       "item": "mocreatures:bigcatclaw"
     },
     "Z": {
-      "type": "forge:ore_dict",
-      "ore": "ingotIron"
+      "tag": "forge:ingotiron"
     }
   },
   "result": {
