@@ -10,7 +10,7 @@
       "item": "mocreatures:sharkteeth"
     },
     "#": {
-      "tag": "forge:string"
+      "item": "minecraft:string"
     }
   },
   "result": {

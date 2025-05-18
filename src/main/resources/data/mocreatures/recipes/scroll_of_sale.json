@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:paper"
+      "item": "minecraft:paper"
     },
     {
-      "tag": "forge:dyeblack"
+      "item": "minecraft:black_dye"
     },
     {
-      "tag": "forge:feather"
+      "item": "minecraft:feather"
     }
   ],
   "result": {

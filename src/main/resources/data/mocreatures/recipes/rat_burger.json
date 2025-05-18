@@ -11,8 +11,7 @@
       "item": "mocreatures:ratcooked"
     },
     {
-      "item": "minecraft:tallgrass",
-      "data": 1
+      "item": "minecraft:grass"
     }
   ],
   "result": {

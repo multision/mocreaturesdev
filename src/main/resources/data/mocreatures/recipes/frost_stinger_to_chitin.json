@@ -2,8 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "mocreatures:scorpstingfrost",
-      "data": 32767
+      "item": "mocreatures:scorpstingfrost"
     }
   ],
   "result": {

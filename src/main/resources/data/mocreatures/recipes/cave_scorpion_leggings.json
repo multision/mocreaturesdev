@@ -10,8 +10,7 @@
       "item": "mocreatures:chitinblack"
     },
     "*": {
-      "item": "minecraft:golden_leggings",
-      "data": 32767
+      "item": "minecraft:golden_leggings"
     }
   },
   "result": {

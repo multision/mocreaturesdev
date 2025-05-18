@@ -7,10 +7,10 @@
   ],
   "key": {
     "X": {
-      "tag": "forge:wool"
+      "item": "minecraft:white_wool"
     },
     "#": {
-      "tag": "forge:chestwood"
+      "item": "minecraft:chest"
     },
     "R": {
       "item": "mocreatures:hide"

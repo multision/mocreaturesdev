@@ -11,7 +11,7 @@
       "item": "mocreatures:hide"
     },
     "#": {
-      "tag": "forge:ingotiron"
+      "tag": "forge:ingots/iron"
     }
   },
   "result": {

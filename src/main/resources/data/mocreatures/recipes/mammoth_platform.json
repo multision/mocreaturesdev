@@ -7,13 +7,13 @@
   ],
   "key": {
     "X": {
-      "tag": "forge:logwood"
+      "tag": "forge:logs"
     },
     "#": {
       "item": "minecraft:lead"
     },
     "R": {
-      "tag": "minecraft:planks"
+      "tag": "forge:planks"
     }
   },
   "result": {

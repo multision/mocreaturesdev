@@ -10,7 +10,7 @@
       "item": "mocreatures:ancientsilveringot"
     },
     "I": {
-      "tag": "forge:ingotiron"
+      "tag": "forge:ingots/iron"
     }
   },
   "result": {

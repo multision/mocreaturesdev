@@ -7,10 +7,10 @@
   ],
   "key": {
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "forge:planks"
     },
     "S": {
-      "tag": "forge:stickwood"
+      "item": "minecraft:stick"
     },
     "#": {
       "item": "mocreatures:sharkteeth"

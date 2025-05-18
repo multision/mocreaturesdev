@@ -7,13 +7,13 @@
   ],
   "key": {
     "X": {
-      "tag": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     },
     "#": {
-      "tag": "forge:leather"
+      "item": "minecraft:leather"
     },
     "*": {
-      "tag": "forge:gemlapis"
+      "item": "minecraft:lapis_lazuli"
     }
   },
   "result": {

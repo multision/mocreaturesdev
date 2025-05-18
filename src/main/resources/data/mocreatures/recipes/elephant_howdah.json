@@ -7,10 +7,10 @@
   ],
   "key": {
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "forge:planks"
     },
     "#": {
-      "tag": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     },
     "R": {
       "tag": "forge:wool"

@@ -10,8 +10,7 @@
       "item": "mocreatures:chitinfrost"
     },
     "*": {
-      "item": "minecraft:golden_chestplate",
-      "data": 32767
+      "item": "minecraft:golden_chestplate"
     }
   },
   "result": {

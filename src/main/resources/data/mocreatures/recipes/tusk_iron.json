@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": {
-      "tag": "forge:ingotiron"
+      "tag": "forge:ingots/iron"
     },
     "#": {
       "item": "minecraft:lead"

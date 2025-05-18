@@ -8,10 +8,10 @@
   ],
   "key": {
     "X": {
-      "tag": "minecraft:gold_nugget"
+      "tag": "forge:nuggets/gold"
     },
     "#": {
-      "tag": "forge:dustblaze"
+      "item": "minecraft:blaze_powder"
     },
     "Z": {
       "item": "mocreatures:unicornhorn"

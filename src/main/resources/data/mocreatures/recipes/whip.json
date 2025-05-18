@@ -7,13 +7,13 @@
   ],
   "key": {
     "X": {
-      "tag": "forge:leather"
+      "item": "minecraft:leather"
     },
     "#": {
       "item": "mocreatures:bigcatclaw"
     },
     "Z": {
-      "tag": "forge:ingotiron"
+      "tag": "forge:ingots/iron"
     }
   },
   "result": {

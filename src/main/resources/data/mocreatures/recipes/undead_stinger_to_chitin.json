@@ -2,8 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "mocreatures:scorpstingundead",
-      "data": 32767
+      "item": "mocreatures:scorpstingundead"
     }
   ],
   "result": {

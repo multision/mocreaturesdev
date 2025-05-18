@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "forge:planks"
     },
     "#": {
       "item": "minecraft:lead"

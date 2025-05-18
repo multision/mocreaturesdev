@@ -9,8 +9,7 @@
       "item": "mocreatures:chitinnether"
     },
     "*": {
-      "item": "minecraft:golden_boots",
-      "data": 32767
+      "item": "minecraft:golden_boots"
     }
   },
   "result": {

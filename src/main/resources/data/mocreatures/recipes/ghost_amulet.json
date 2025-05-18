@@ -7,10 +7,10 @@
   ],
   "key": {
     "X": {
-      "tag": "minecraft:gold_nugget"
+      "tag": "forge:nuggets/gold"
     },
     "#": {
-      "tag": "forge:bone"
+      "item": "minecraft:bone"
     },
     "Z": {
       "item": "minecraft:ghast_tear"

@@ -7,12 +7,10 @@
   ],
   "key": {
     "S": {
-      "item": "mocreatures:scorpstingcave",
-      "data": 32767
+      "item": "mocreatures:scorpstingcave"
     },
     "G": {
-      "item": "minecraft:golden_sword",
-      "data": 32767
+      "item": "minecraft:golden_sword"
     },
     "C": {
       "item": "mocreatures:chitinblack"

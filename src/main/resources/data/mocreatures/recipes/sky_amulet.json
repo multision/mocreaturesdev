@@ -7,13 +7,13 @@
   ],
   "key": {
     "X": {
-      "tag": "minecraft:gold_nugget"
+      "tag": "forge:nuggets/gold"
     },
     "#": {
-      "tag": "forge:dustblaze"
+      "item": "minecraft:blaze_powder"
     },
     "Z": {
-      "tag": "minecraft:diamond"
+      "item": "minecraft:diamond"
     }
   },
   "result": {

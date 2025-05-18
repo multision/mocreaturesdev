@@ -7,10 +7,10 @@
   ],
   "key": {
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "forge:planks"
     },
     "#": {
-      "tag": "forge:sand"
+      "item": "minecraft:sand"
     }
   },
   "result": {

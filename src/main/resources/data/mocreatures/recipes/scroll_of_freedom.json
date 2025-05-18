@@ -3,13 +3,13 @@
   "group": "mocreatures:scrolloffreedom",
   "ingredients": [
     {
-      "tag": "forge:paper"
+      "item": "minecraft:paper"
     },
     {
-      "tag": "forge:dyered"
+      "item": "minecraft:red_dye"
     },
     {
-      "tag": "forge:feather"
+      "item": "minecraft:feather"
     }
   ],
   "result": {

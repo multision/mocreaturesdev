@@ -2,8 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "mocreatures:scorpstingcave",
-      "data": 32767
+      "item": "mocreatures:scorpstingcave"
     }
   ],
   "result": {
