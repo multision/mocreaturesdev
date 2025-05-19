@@ -1,20 +1,16 @@
 // drzhark.mocreatures.worldgen.MoCFeatures.java
-package drzhark.mocreatures.dimension.worldgen;
+package drzhark.mocreatures.dimension.worldgen.features;
 
 import drzhark.mocreatures.init.MoCBlocks;
-import net.minecraft.advancements.criterion.BlockPredicate;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
 import net.minecraft.world.gen.feature.template.RuleTest;
-import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.placement.*;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +20,9 @@ public class MoCFeatures {
 
     // Vegetation
     public static ConfiguredFeature<?, ?> TALL_WYVGRASS_CONFIGURED;
-    public static ConfiguredFeature<BaseTreeFeatureConfig, ?> WYVERN_TREE_FEATURE;
+    public static ConfiguredFeature<BaseTreeFeatureConfig, ?> WYVERN_TREE_RANDOM;
+    public static ConfiguredFeature<BaseTreeFeatureConfig, ?> WYVERN_TREE_SPRUCE;
+    public static ConfiguredFeature<BaseTreeFeatureConfig, ?> WYVERN_TREE_MEGA_OAK;
 
     // Ores
     public static ConfiguredFeature<?, ?> WYV_IRON_ORE;
@@ -59,30 +57,54 @@ public class MoCFeatures {
 
         System.out.println("[MoC] Registered tall_wyvgrass feature and configured feature.");
 
-        // Use vanilla TreeFeature directly — no custom class needed
-        Feature<BaseTreeFeatureConfig> wyvernTree = new TreeFeature(BaseTreeFeatureConfig.CODEC);
-        wyvernTree.setRegistryName("mocreatures", "wyvern_tree");
-        event.getRegistry().register(wyvernTree);
+        // Trees
 
-        // Build your config
-        BaseTreeFeatureConfig config = new BaseTreeFeatureConfig.Builder(
+        Feature<BaseTreeFeatureConfig> randomTreeFeature = new SafeWyvernTreeFeature();
+        randomTreeFeature.setRegistryName("mocreatures", "wyvern_tree_base");
+        event.getRegistry().register(randomTreeFeature);
+
+// Build SPRUCE config
+        BaseTreeFeatureConfig spruceConfig = new BaseTreeFeatureConfig.Builder(
                 new SimpleBlockStateProvider(MoCBlocks.wyvwoodLog.getDefaultState()),
                 new SimpleBlockStateProvider(MoCBlocks.wyvwoodLeaves.getDefaultState()),
                 Features.SPRUCE.config.foliagePlacer,
                 Features.SPRUCE.config.trunkPlacer,
                 Features.SPRUCE.config.minimumSize
-        )     // controls how foliage stacks
-                .setIgnoreVines()
-                .build();
+        ).setIgnoreVines().build();
 
+// Build MEGA OAK config
+        BaseTreeFeatureConfig megaOakConfig = new BaseTreeFeatureConfig.Builder(
+                new SimpleBlockStateProvider(MoCBlocks.wyvwoodLog.getDefaultState()),
+                new SimpleBlockStateProvider(MoCBlocks.wyvwoodLeaves.getDefaultState()),
+                Features.DARK_OAK.config.foliagePlacer,
+                Features.DARK_OAK.config.trunkPlacer,
+                Features.DARK_OAK.config.minimumSize
+        ).setIgnoreVines().build();
 
-        WYVERN_TREE_FEATURE = wyvernTree.withConfiguration(config);
+// Create individual configured features (not used directly)
+        ConfiguredFeature<BaseTreeFeatureConfig, ?> WYVERN_TREE_SPRUCE = randomTreeFeature.withConfiguration(spruceConfig);
+        ConfiguredFeature<BaseTreeFeatureConfig, ?> WYVERN_TREE_MEGA_OAK = randomTreeFeature.withConfiguration(megaOakConfig);
+
+// Register the random variant feature (runtime picks one)
+        Feature<BaseTreeFeatureConfig> safeRandomTree = new SafeWyvernTreeFeature(
+                WYVERN_TREE_SPRUCE,
+                WYVERN_TREE_MEGA_OAK
+        );
+        safeRandomTree.setRegistryName("mocreatures", "wyvern_tree_random");
+        event.getRegistry().register(safeRandomTree);
+
+        WYVERN_TREE_RANDOM = safeRandomTree
+                .withConfiguration(spruceConfig) // Dummy config; unused internally
+                .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
         Registry.register(WorldGenRegistries.CONFIGURED_FEATURE,
-                new ResourceLocation("mocreatures", "wyvern_tree"),
-                WYVERN_TREE_FEATURE);
+                new ResourceLocation("mocreatures", "wyvern_tree_random"),
+                WYVERN_TREE_RANDOM);
 
-        System.out.println("[MoC] Registered WYVERN_TREE_FEATURE.");
+        System.out.println("[MoC] Registered Wyvern Trees with random variant support.");
+
+
+        System.out.println("[MoC] Registered Wyvern Trees.");
 
         // Ores
         RuleTest wyvStoneReplaceable = new BlockMatchRuleTest(MoCBlocks.wyvstone);

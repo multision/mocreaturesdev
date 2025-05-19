@@ -1,4 +1,4 @@
-package drzhark.mocreatures.dimension.worldgen;
+package drzhark.mocreatures.dimension.worldgen.features;
 
 import drzhark.mocreatures.block.MoCBlockGrass;
 import drzhark.mocreatures.init.MoCBlocks;

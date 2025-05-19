@@ -1,7 +1,7 @@
 // drzhark.mocreatures.worldgen.MoCWorldGenEvents.java
 package drzhark.mocreatures.dimension.worldgen;
 
-import net.minecraft.util.ResourceLocation;
+import drzhark.mocreatures.dimension.worldgen.features.MoCFeatures;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -22,7 +22,7 @@ public class MoCWorldGenEvents {
         if (event.getName().getNamespace().equals("mocreatures") &&
                 event.getName().getPath().startsWith("wyvernlair")) {
 
-            System.out.println("[MoC] Injecting tall_wyvgrass into biome: " + event.getName());
+            //System.out.println("[MoC] Injecting tall_wyvgrass into biome: " + event.getName());
 
 
             if (MoCFeatures.TALL_WYVGRASS_CONFIGURED != null) {
@@ -32,6 +32,10 @@ public class MoCWorldGenEvents {
             } else {
                 System.out.println("[MoC] Warning: ConfiguredFeature is still null during biome load!");
             }
+
+            //event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MoCFeatures.WYVERN_TREE_SPRUCE);
+            //event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MoCFeatures.WYVERN_TREE_MEGA_OAK);
+            event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MoCFeatures.WYVERN_TREE_RANDOM);
 
             event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_IRON_ORE);
             event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_GOLD_ORE);
