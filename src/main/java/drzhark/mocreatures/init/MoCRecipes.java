@@ -4,6 +4,7 @@
 package drzhark.mocreatures.init;
 
 import drzhark.mocreatures.MoCConstants;
+import drzhark.mocreatures.item.MoCItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -37,31 +38,32 @@ public class MoCRecipes {
         @SubscribeEvent
         public static void registerRecipes(final RegistryEvent.Register<?> event) { //TODO TheidenHD
 
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.ancientOre), new ItemStack(Items.DYE, 3, 15), 0.2F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.cobbledDeepWyvstone), new ItemStack(MoCBlocks.deepWyvstone), 0.1F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.cobbledWyvstone), new ItemStack(MoCBlocks.wyvstone), 0.1F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.silverSand), new ItemStack(MoCBlocks.gleamingGlass), 0.1F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernDiamondOre), new ItemStack(Items.DIAMOND), 1.0F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernEmeraldOre), new ItemStack(Items.EMERALD), 1.0F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernGoldOre), new ItemStack(Items.GOLD_INGOT), 1.0F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernIronOre), new ItemStack(Items.IRON_INGOT), 0.7F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernLapisOre), new ItemStack(Items.DYE, 1, 4), 0.4F);
-//            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvwoodLog), new ItemStack(Items.COAL, 1, 1), 0.15F);
-//
-//            GameRegistry.addSmelting(MoCItems.ancientSilverScrap, new ItemStack(MoCItems.ancientSilverIngot), 1.0F);
-//            GameRegistry.addSmelting(MoCItems.crabraw, new ItemStack(MoCItems.crabcooked), 0.35F);
-//            GameRegistry.addSmelting(MoCItems.duckRaw, new ItemStack(MoCItems.duckCooked), 0.35F);
-//            GameRegistry.addSmelting(MoCItems.ratRaw, new ItemStack(MoCItems.ratCooked), 0.35F);
-//            GameRegistry.addSmelting(MoCItems.mocegg, new ItemStack(MoCItems.omelet), 0.35F);
-//            GameRegistry.addSmelting(MoCItems.ostrichraw, new ItemStack(MoCItems.ostrichcooked), 0.35F);
-//            GameRegistry.addSmelting(MoCItems.rawTurkey, new ItemStack(MoCItems.cookedTurkey), 0.35F);
-//            GameRegistry.addSmelting(MoCItems.silveraxe, new ItemStack(MoCItems.ancientSilverNugget), 0.25F);
-//            GameRegistry.addSmelting(MoCItems.silversword, new ItemStack(MoCItems.ancientSilverNugget), 0.25F);
-//            GameRegistry.addSmelting(MoCItems.turtleraw, new ItemStack(MoCItems.turtlecooked), 0.35F);
-//            GameRegistry.addSmelting(MoCItems.venisonRaw, new ItemStack(MoCItems.venisonCooked), 0.35F);
-//
-//            GameRegistry.addSmelting(Items.EGG, new ItemStack(MoCItems.omelet), 0.35F);
-//
+            /*
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.ancientOre), new ItemStack(MoCItems.ancientSilverIngot, 3, 15), 0.2F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.cobbledDeepWyvstone), new ItemStack(MoCBlocks.deepWyvstone), 0.1F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.cobbledWyvstone), new ItemStack(MoCBlocks.wyvstone), 0.1F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.silverSand), new ItemStack(MoCBlocks.gleamingGlass), 0.1F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernDiamondOre), new ItemStack(Items.DIAMOND), 1.0F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernEmeraldOre), new ItemStack(Items.EMERALD), 1.0F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernGoldOre), new ItemStack(Items.GOLD_INGOT), 1.0F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernIronOre), new ItemStack(Items.IRON_INGOT), 0.7F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvernLapisOre), new ItemStack(Items.LAPIS_LAZULI, 1, 4), 0.4F);
+            GameRegistry.addSmelting(new ItemStack(MoCBlocks.wyvwoodLog), new ItemStack(Items.COAL, 1, 1), 0.15F);
+
+            GameRegistry.addSmelting(MoCItems.ancientSilverScrap, new ItemStack(MoCItems.ancientSilverIngot), 1.0F);
+            GameRegistry.addSmelting(MoCItems.crabraw, new ItemStack(MoCItems.crabcooked), 0.35F);
+            GameRegistry.addSmelting(MoCItems.duckRaw, new ItemStack(MoCItems.duckCooked), 0.35F);
+            GameRegistry.addSmelting(MoCItems.ratRaw, new ItemStack(MoCItems.ratCooked), 0.35F);
+            GameRegistry.addSmelting(MoCItems.mocegg, new ItemStack(MoCItems.omelet), 0.35F);
+            GameRegistry.addSmelting(MoCItems.ostrichraw, new ItemStack(MoCItems.ostrichcooked), 0.35F);
+            GameRegistry.addSmelting(MoCItems.rawTurkey, new ItemStack(MoCItems.cookedTurkey), 0.35F);
+            GameRegistry.addSmelting(MoCItems.silveraxe, new ItemStack(MoCItems.ancientSilverNugget), 0.25F);
+            GameRegistry.addSmelting(MoCItems.silversword, new ItemStack(MoCItems.ancientSilverNugget), 0.25F);
+            GameRegistry.addSmelting(MoCItems.turtleraw, new ItemStack(MoCItems.turtlecooked), 0.35F);
+            GameRegistry.addSmelting(MoCItems.venisonRaw, new ItemStack(MoCItems.venisonCooked), 0.35F);
+
+            GameRegistry.addSmelting(Items.EGG, new ItemStack(MoCItems.omelet), 0.35F);
+*/
 //            OreDictionary.registerOre("blockGlass", new ItemStack(MoCBlocks.gleamingGlass));
 //            OreDictionary.registerOre("blockGlassColorless", new ItemStack(MoCBlocks.gleamingGlass));
 //            OreDictionary.registerOre("blockSilver", new ItemStack(MoCBlocks.ancientSilverBlock));

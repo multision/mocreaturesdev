@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "mocreatures:silver_sand"
+    },
+    "result": "mocreatures:gleaming_glass",
+    "experience": 0.1,
+    "cookingtime": 200
+}

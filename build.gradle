@@ -89,6 +89,8 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.42'
 
+    implementation fg.deobf("curse.maven:jei-238222:5846870")
+
     //implementation fg.deobf ("curse.maven:cofh-core-69162:4022663")
     //implementation rfg.deobf("curse.maven:future-mc-310059:3924863")
     //implementation rfg.deobf("curse.maven:thaumcraft-223628:2629023")

@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "mocreatures:ostrichraw"
+    },
+    "result": "mocreatures:ostrichcooked",
+    "experience": 0.35,
+    "cookingtime": 200
+}
