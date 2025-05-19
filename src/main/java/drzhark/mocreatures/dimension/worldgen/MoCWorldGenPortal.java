@@ -1,6 +1,8 @@
 package drzhark.mocreatures.dimension.worldgen;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.StairsBlock;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
@@ -35,9 +37,12 @@ public class MoCWorldGenPortal {
         int z = pos.getZ();
 
         // Place stairs
-        for (int nZ = z - 3; nZ < z + 3; nZ += 5) {
+        for (int nZ = z - 3; nZ <= z + 2; nZ += 5) {
+            Direction facing = (nZ < z) ? Direction.SOUTH : Direction.NORTH;
             for (int nX = x - 2; nX < x + 2; nX++) {
-                world.setBlockState(new BlockPos(nX, y + 1, nZ), stairBlock, 2);
+                BlockPos stairPos = new BlockPos(nX, y + 1, nZ);
+                BlockState facingStair = stairBlock.with(StairsBlock.FACING, facing);
+                world.setBlockState(stairPos, facingStair, 2);
             }
         }
 
