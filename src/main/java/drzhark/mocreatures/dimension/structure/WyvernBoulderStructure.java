@@ -1,7 +1,6 @@
 package drzhark.mocreatures.dimension.structure;
 
 import drzhark.mocreatures.init.MoCBlocks;
-import net.minecraft.block.BlockState;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -20,7 +19,6 @@ import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
-import net.minecraft.world.gen.feature.template.StructureProcessor;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
@@ -32,19 +30,19 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Random;
 
 @Mod.EventBusSubscriber
-public class WyvernLakeStructure {
+public class WyvernBoulderStructure {
 
-    private static Feature<NoFeatureConfig> lakeFeature = null;
-    private static ConfiguredFeature<?, ?> lake1Configured = null;
-    private static ConfiguredFeature<?, ?> lake2Configured = null;
+    private static Feature<NoFeatureConfig> boulderFeature = null;
+    private static ConfiguredFeature<?, ?> boulder1Configured = null;
+    private static ConfiguredFeature<?, ?> boulder2Configured = null;
 
     @SubscribeEvent
     public static void addFeatureToBiomes(BiomeLoadingEvent event) {
         if (!event.getName().getNamespace().equals("mocreatures")) return;
         String path = event.getName().getPath();
         if (path.startsWith("wyvernlairlands")) {
-            event.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() -> lake1Configured);
-            event.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() -> lake2Configured);
+            event.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() -> boulder1Configured);
+            event.getGeneration().getFeatures(GenerationStage.Decoration.SURFACE_STRUCTURES).add(() -> boulder2Configured);
         }
     }
 
@@ -52,7 +50,7 @@ public class WyvernLakeStructure {
     private static class FeatureRegisterHandler {
         @SubscribeEvent
         public static void registerFeature(RegistryEvent.Register<Feature<?>> event) {
-            lakeFeature = new Feature<NoFeatureConfig>(NoFeatureConfig.CODEC) {
+            boulderFeature = new Feature<NoFeatureConfig>(NoFeatureConfig.CODEC) {
                 @Override
                 public boolean generate(ISeedReader world, ChunkGenerator generator, Random random, BlockPos pos, NoFeatureConfig config) {
                     int chunkX = pos.getX() >> 4 << 4;
@@ -81,7 +79,7 @@ public class WyvernLakeStructure {
                     Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
                     Mirror mirror = Mirror.values()[random.nextInt(Mirror.values().length)];
                     BlockPos spawnTo = base.up();
-                    String structureName = random.nextBoolean() ? "lake1" : "lake2";
+                    String structureName = random.nextBoolean() ? "wyvernboulder1" : "wyvernboulder2";
                     Template template = world.getWorld().getStructureTemplateManager().getTemplate(new ResourceLocation("mocreatures", structureName));
                     if (template == null) return false;
 
@@ -96,15 +94,15 @@ public class WyvernLakeStructure {
                 }
             };
 
-            event.getRegistry().register(lakeFeature.setRegistryName("wyvern_lake_feature"));
+            event.getRegistry().register(boulderFeature.setRegistryName("wyvern_boulder_feature"));
 
-            lake1Configured = lakeFeature.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+            boulder1Configured = boulderFeature.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
                     .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
-            lake2Configured = lakeFeature.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+            boulder2Configured = boulderFeature.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
                     .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
-            Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation("mocreatures", "lake_1"), lake1Configured);
-            Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation("mocreatures", "lake_2"), lake2Configured);
+            Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation("mocreatures", "boulder_1"), boulder1Configured);
+            Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation("mocreatures", "boulder_2"), boulder2Configured);
         }
     }
 }
