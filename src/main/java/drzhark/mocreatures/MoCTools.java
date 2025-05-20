@@ -73,6 +73,9 @@ import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MoCTools {
 
@@ -834,51 +837,55 @@ public class MoCTools {
      * player.getName() as the owner of the entity, and name the entity.
      */
     public static ActionResultType tameWithName(PlayerEntity ep, IMoCTameable storedCreature) {
-        if (ep == null) {
-            return ActionResultType.PASS;
-        }
+        if (ep == null || storedCreature == null) return ActionResultType.PASS;
+
+        storedCreature.setOwnerId(ep.getUniqueID());
 
         if (MoCreatures.proxy.enableOwnership) {
-            if (storedCreature == null) {
-                ep.sendMessage(new TranslationTextComponent(TextFormatting.RED + "ERROR:" + TextFormatting.WHITE + "The stored creature is NULL and could not be created. Report to admin."), ep.getUniqueID());
-                return ActionResultType.FAIL;
-            }
-            int max;
-            max = MoCreatures.proxy.maxTamed;
-            // only check count for new pets as owners may be changing the name
+            int max = MoCreatures.proxy.maxTamed;
             if (!MoCreatures.instance.mapData.isExistingPet(ep.getUniqueID(), storedCreature)) {
                 int count = MoCTools.numberTamedByPlayer(ep);
                 if (isThisPlayerAnOP(ep)) {
                     max = MoCreatures.proxy.maxOPTamed;
                 }
                 if (count >= max) {
-                    String message = "\2474" + ep.getName() + " can not tame more creatures, limit of " + max + " reached";
-                    ep.sendMessage(new TranslationTextComponent(message), ep.getUniqueID());
+                    ep.sendMessage(new TranslationTextComponent("\2474" + ep.getName() + " can not tame more creatures, limit of " + max + " reached"), ep.getUniqueID());
                     return ActionResultType.PASS;
                 }
             }
         }
 
-        storedCreature.setOwnerId(ep.getUniqueID()); // ALWAYS SET OWNER. Required for our new pet save system.
-        if (MoCreatures.proxy.alwaysNamePets) {
-            MoCMessageHandler.INSTANCE.sendTo(new MoCMessageNameGUI(((Entity) storedCreature).getEntityId()), ((ServerPlayerEntity) ep).connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
-        }
-        /*if (!ep.world.isRemote && MoCreatures.proxy.alwaysNamePets && ep instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) ep;
-
-            MoCMessageHandler.INSTANCE.sendTo(
-                    new MoCMessageNameGUI(((Entity) storedCreature).getEntityId()),
-                    serverPlayer.connection.getNetworkManager(),
-                    NetworkDirection.PLAY_TO_CLIENT
-            );
-        }*/
         storedCreature.setTamed(true);
-        // Required to update petId data for pet amulets
+
+        // Update petId
         if (MoCreatures.instance.mapData != null && storedCreature.getOwnerPetId() == -1) {
             MoCreatures.instance.mapData.updateOwnerPet(storedCreature);
         }
+
+        // Delay GUI opening to ensure client has the entity
+        if (!ep.world.isRemote && MoCreatures.proxy.alwaysNamePets && ep instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) ep;
+            Entity entity = (Entity) storedCreature;
+
+            MoCTools.runLater(() -> {
+                MoCMessageHandler.INSTANCE.sendTo(
+                        new MoCMessageNameGUI(entity.getEntityId()),
+                        serverPlayer.connection.getNetworkManager(),
+                        NetworkDirection.PLAY_TO_CLIENT
+                );
+            }, 3); // Delay 3 ticks (150ms)
+        }
+
         return ActionResultType.SUCCESS;
     }
+
+    private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+    public static void runLater(Runnable task, int ticksDelay) {
+        long delayMs = ticksDelay * 50L;
+        scheduler.schedule(task, delayMs, TimeUnit.MILLISECONDS);
+    }
+
 
     public static int numberTamedByPlayer(PlayerEntity ep) {
         if (MoCreatures.instance.mapData != null && MoCreatures.instance.mapData.getPetData(ep.getUniqueID()) != null) {
