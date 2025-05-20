@@ -22,6 +22,7 @@ public class MoCItems {
 
     public static final Set<Item> ITEMS = new HashSet<>();
     // Misc
+    public static final ItemHorseGuide horseGuide = (ItemHorseGuide) new ItemHorseGuide(new Item.Properties().maxStackSize(1).group(ItemGroup.MISC)).setRegistryName("mocreatures", "horseguide");;
     public static final MoCItemRecord recordshuffle = new MoCItemRecord(15, "recordshuffle", MoCSoundEvents.ITEM_RECORD_SHUFFLING::get, (new Item.Properties()).maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE));
     public static final MoCItem horsesaddle = new MoCItemHorseSaddle((new Item.Properties()), "horsesaddle");
     public static final MoCItem sharkteeth = new MoCItem((new Item.Properties()), "sharkteeth");
@@ -172,6 +173,7 @@ public class MoCItems {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             List<Item> items = new ArrayList<>(Arrays.asList(
+                    horseGuide,
                     horsesaddle,
                     sharkteeth,
                     haystack,
