@@ -11,5 +11,7 @@ public class MoCCommandHandler {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         MoCWyvernCommand.register(event.getDispatcher());
+
+        CommandSpawnMoCHorse.register(event.getDispatcher());
     }
 }

@@ -246,7 +246,7 @@ public class MoCProxyClient extends MoCProxy {
             int i = densityInt * entity.world.rand.nextInt(2);// + 2;
             for (int x = 0; x < i; x++) {
                 MoCEntityFXStar FXStar = new MoCEntityFXStar(mc.world, entity.getPosX(), entity.getPosY() + entity.world.rand.nextFloat() * entity.getHeight(), entity.getPosZ(), fRed, fGreen, fBlue);
-                mc.particles.addEffect(FXStar);
+                //mc.particles.addEffect(FXStar);
 
             }
 
