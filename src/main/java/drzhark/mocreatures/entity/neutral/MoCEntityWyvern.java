@@ -22,6 +22,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -37,6 +38,8 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.FlyingPathNavigator;
+import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
@@ -71,23 +74,29 @@ public class MoCEntityWyvern extends MoCEntityTameableAnimal {
     private int tCounter;
     private float fTransparency;
 
+    private int landTime = 0;
+    private int landedTicks = 0;
+    private boolean isLanded = false;
 
-    public MoCEntityWyvern(EntityType<? extends MoCEntityWyvern> type, World world) {
+    /*public MoCEntityWyvern(EntityType<? extends MoCEntityWyvern> type, World world) {
         super(type, world);
         //setSize(1.45F, 1.55F);
         setAdult(true);
         setTamed(false);
         this.stepHeight = 1.0F;
 
-        // TODO: Make hitboxes adjust depending on size
-        /*if (this.rand.nextInt(6) == 0) {
-            setAge(50 + this.rand.nextInt(50));
-        } else {
-            setAge(80 + this.rand.nextInt(20));
-        }*/
-
         setAge(80);
         experienceValue = 20;
+    }*/
+    public MoCEntityWyvern(EntityType<? extends MoCEntityWyvern> type, World world) {
+        super(type, world);
+        setAdult(true);
+        setTamed(false);
+        this.stepHeight = 1.0F;
+        setAge(80);
+        experienceValue = 20;
+        this.moveController = new FlyingMovementController(this, 20, true);
+        this.navigator = new FlyingPathNavigator(this, world);
     }
 
     @Override
@@ -101,7 +110,7 @@ public class MoCEntityWyvern extends MoCEntityTameableAnimal {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MoCEntityTameableAnimal.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 24.0D).createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.ARMOR, 14.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 9.0D);
+        return MoCEntityTameableAnimal.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 24.0D).createMutableAttribute(Attributes.MAX_HEALTH, 80.0D).createMutableAttribute(Attributes.ARMOR, 14.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 9.0D).createMutableAttribute(Attributes.FLYING_SPEED, 0.6D);
     }
 
     @Override
@@ -313,6 +322,7 @@ public class MoCEntityWyvern extends MoCEntityTameableAnimal {
         this.transformCounter = 1;
     }
 
+    /*
     @Override
     public void livingTick() {
 
@@ -428,6 +438,130 @@ public class MoCEntityWyvern extends MoCEntityTameableAnimal {
         boolean shouldFly = !this.onGround && !isInWater() && !this.isBeingRidden();
         if (getIsFlying() != shouldFly) {
             setIsFlying(shouldFly);
+        }
+
+        super.livingTick();
+    }*/
+
+    @Override
+    public void livingTick() {
+        if (this.wingFlapCounter > 0 && ++this.wingFlapCounter > 20) {
+            this.wingFlapCounter = 0;
+        }
+        if (this.wingFlapCounter == 5 && !this.world.isRemote) {
+            MoCTools.playCustomSound(this, MoCSoundEvents.ENTITY_WYVERN_WINGFLAP.get());
+        }
+
+        if (this.transformCounter > 0) {
+            if (this.transformCounter == 40) {
+                MoCTools.playCustomSound(this, MoCSoundEvents.ENTITY_GENERIC_TRANSFORM.get());
+            }
+            if (++this.transformCounter > 100) {
+                this.transformCounter = 0;
+                if (this.transformType != 0) {
+                    setTypeMoC(this.transformType);
+                    selectType();
+                }
+            }
+        }
+
+        if (!this.world.isRemote) {
+            if (!isMovementCeased() && !this.getIsTamed()) {
+                if (getIsFlying()) {
+                    landedTicks = 0;
+                    if (this.rand.nextInt(600) == 0) {
+                        BlockPos below = this.getPosition().down();
+                        if (this.world.getBlockState(below).isSolid()) {
+                            setIsFlying(false);
+                            isLanded = true;
+                            landTime = 0;
+                            this.navigator = new GroundPathNavigator(this, world);
+                        }
+                    }
+                } else {
+                    landTime++;
+                    if (landTime > 200 && this.rand.nextInt(200) == 0) {
+                        setIsFlying(true);
+                        isLanded = false;
+                        landTime = 0;
+                        this.navigator = new FlyingPathNavigator(this, world);
+                    }
+                }
+            }
+
+            if (getAttackTarget() != null || this.isBeingRidden()) {
+                if (!getIsFlying()) {
+                    setIsFlying(true);
+                    isLanded = false;
+                    landTime = 0;
+                    this.navigator = new FlyingPathNavigator(this, world);
+                }
+            }
+
+            if (getIsFlying() && this.getNavigator().noPath() && !isMovementCeased() && this.getAttackTarget() == null && rand.nextInt(30) == 0) {
+                this.wander.makeUpdate();
+            }
+
+            if (this.getMotion().getY() > 0.5) {
+                this.setMotion(this.getMotion().getX(), 0.5D, this.getMotion().getZ());
+            }
+
+            if (getIsFlying() && !this.onGround && !this.isInWater()) {
+                float myFlyingSpeed = MoCTools.getMyMovementSpeed(this);
+                int wingFlapFreq = (int) (25 - (myFlyingSpeed * 10));
+                if (wingFlapFreq < 5) wingFlapFreq = 5;
+                if (this.rand.nextInt(wingFlapFreq) == 0 && this.wingFlapCounter == 0) {
+                    wingFlap();
+                }
+            }
+
+            if (getIsGhost() && getAge() > 0 && getAge() < 10 && this.rand.nextInt(5) == 0) {
+                setAge(getAge() + 1);
+                if (getAge() == 9) {
+                    setAge(140);
+                    setAdult(true);
+                }
+            }
+
+            if (getIsFlying() && !this.isBeingRidden()) {
+                boolean isVoidBelow = true;
+                for (int i = 1; i <= 10; i++) {
+                    BlockPos checkPos = this.getPosition().down(i);
+                    if (this.world.getBlockState(checkPos).isSolid()) {
+                        isVoidBelow = false;
+                        break;
+                    }
+                }
+
+                if (isVoidBelow && this.getPosY() < 20) {
+                    BlockPos landingSpot = findNearbyLandingSpot();
+                    if (landingSpot != null) {
+                        Vector3d direction = new Vector3d(
+                                landingSpot.getX() + 0.5 - this.getPosX(),
+                                landingSpot.getY() + 1.0 - this.getPosY(),
+                                landingSpot.getZ() + 0.5 - this.getPosZ()
+                        ).normalize();
+
+                        this.setMotion(direction.scale(0.6D));
+                        this.rotationYaw = -((float) MathHelper.atan2(direction.x, direction.z)) * (180F / (float)Math.PI);
+                    } else {
+                        this.setMotion(this.getMotion().x, 0.3D, this.getMotion().z);
+                        this.navigator.clearPath();
+                        this.rotationYaw += rand.nextInt(40) - 20;
+                    }
+                } else if (this.getNavigator().noPath()) {
+                    Vector3d forward = Vector3d.fromPitchYaw(0, this.rotationYaw).scale(0.15);
+                    this.setMotion(forward.getX(), this.getMotion().y, forward.getZ());
+                }
+            }
+        } else {
+            if (this.mouthCounter > 0 && ++this.mouthCounter > 30) {
+                this.mouthCounter = 0;
+            }
+
+            if (this.diveCounter > 0 && ++this.diveCounter > 5) {
+                this.diveCounter = 0;
+            }
         }
 
         super.livingTick();

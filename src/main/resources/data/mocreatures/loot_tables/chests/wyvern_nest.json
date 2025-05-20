@@ -1,0 +1,73 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": { "min": 2, "max": 4 },
+      "entries": [
+        {
+          "type": "item",
+          "name": "mocreatures:mocegg",
+          "functions": [{ "function": "minecraft:set_nbt", "tag": "{EggType:50}" }],
+          "weight": 2
+        },
+        {
+          "type": "item",
+          "name": "mocreatures:mocegg",
+          "functions": [{ "function": "minecraft:set_nbt", "tag": "{EggType:54}" }],
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "mocreatures:mocegg",
+          "functions": [{ "function": "minecraft:set_nbt", "tag": "{EggType:55}" }],
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "mocreatures:essenceundead",
+          "weight": 3
+        },
+        {
+          "type": "item",
+          "name": "mocreatures:ancientsilverscrap",
+          "weight": 2
+        },
+        {
+          "type": "item",
+          "name": "mocreatures:petamulet",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "minecraft:gold_ingot",
+          "weight": 4
+        },
+        {
+          "type": "item",
+          "name": "minecraft:diamond",
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "rolls": { "min": 1, "max": 2 },
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:golden_apple",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "mocreatures:heartdarkness",
+          "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "minecraft:bread",
+          "weight": 3
+        }
+      ]
+    }
+  ]
+}
