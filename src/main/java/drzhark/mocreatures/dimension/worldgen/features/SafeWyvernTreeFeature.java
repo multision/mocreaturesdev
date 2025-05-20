@@ -31,38 +31,30 @@ public class SafeWyvernTreeFeature extends Feature<BaseTreeFeatureConfig> {
         BlockState ground = world.getBlockState(surfacePos);
         BlockPos below = surfacePos.down();
 
-        System.out.println("[MoC] SafeWyvernTreeFeature starting at pos: " + pos);
-        System.out.println("[MoC] Checking ground block at " + surfacePos + ": " + ground.getBlock().getRegistryName());
+        //System.out.println("[MoC] SafeWyvernTreeFeature starting at pos: " + pos);
+        //System.out.println("[MoC] Checking ground block at " + surfacePos + ": " + ground.getBlock().getRegistryName());
 
         if (ground.getBlock() != MoCBlocks.wyvgrass) {
-            System.out.println("[MoC] ✗ Block is not wyvgrass");
+            //System.out.println("[MoC] ✗ Block is not wyvgrass");
             return false;
         }
 
         if (world.isAirBlock(below)) {
-            System.out.println("[MoC] ✗ Block below wyvgrass is air (floating): " + below);
+            //System.out.println("[MoC] ✗ Block below wyvgrass is air (floating): " + below);
             return false;
         }
 
         for (BlockPos check : BlockPos.getAllInBoxMutable(surfacePos.add(-1, 0, -1), surfacePos.add(1, 0, 1))) {
             if (world.getBlockState(check).getBlock() != MoCBlocks.wyvgrass) {
-                System.out.println("[MoC] ✗ 3x3 check failed at " + check);
+                //System.out.println("[MoC] ✗ 3x3 check failed at " + check);
                 return false;
             }
         }
 
         ConfiguredFeature<BaseTreeFeatureConfig, ?> selected = variants[rand.nextInt(variants.length)];
         BlockPos finalTreePos = surfacePos.up();
-        System.out.println("[MoC] ✓ Using variant: " + selected.getFeature().getRegistryName() + " at " + finalTreePos);
+        //System.out.println("[MoC] ✓ Using variant: " + selected.getFeature().getRegistryName() + " at " + finalTreePos);
 
-        boolean success = selected.generate(world, generator, rand, finalTreePos);
-
-        if (success) {
-            System.out.println("[MoC] ✓ Tree successfully generated");
-        } else {
-            System.out.println("[MoC] ✗ Tree feature failed to generate");
-        }
-
-        return success;
+        return selected.generate(world, generator, rand, finalTreePos);
     }
 }

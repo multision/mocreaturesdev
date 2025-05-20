@@ -33,9 +33,29 @@ public class MoCMessageNameGUI {
     }
 
     public static boolean onMessage(MoCMessageNameGUI message, Supplier<NetworkEvent.Context> ctx) {
+        ctx.get().enqueueWork(() -> {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc == null || mc.player == null || mc.world == null) return;
+
+            Entity ent = mc.world.getEntityByID(message.entityId);
+
+            System.out.println("[MoCreatures] Looking for entity ID: " + message.entityId);
+            if (ent != null) {
+                System.out.println("[MoCreatures] Found entity: " + ent.getClass().getName());
+            } else {
+                System.out.println("[MoCreatures] Entity was null");
+            }
+
+
+            if (ent instanceof IMoCEntity) {
+                IMoCEntity mocEntity = (IMoCEntity) ent;
+                mc.displayGuiScreen(new MoCGUIEntityNamer(mocEntity, mocEntity.getPetName()));
+            } else {
+                System.err.println("[MoCreatures] Failed to open name GUI: Entity with ID " + message.entityId + " is null or not an IMoCEntity");
+            }
+        });
+
         ctx.get().setPacketHandled(true);
-        Entity ent = Minecraft.getInstance().player.world.getEntityByID(message.entityId);
-        MoCProxyClient.mc.displayGuiScreen(new MoCGUIEntityNamer(((IMoCEntity) ent), ((IMoCEntity) ent).getPetName()));
         return true;
     }
 

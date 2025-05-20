@@ -59,11 +59,7 @@ public class MoCFeatures {
 
         // Trees
 
-        Feature<BaseTreeFeatureConfig> randomTreeFeature = new SafeWyvernTreeFeature();
-        randomTreeFeature.setRegistryName("mocreatures", "wyvern_tree_base");
-        event.getRegistry().register(randomTreeFeature);
-
-// Build SPRUCE config
+        // Step 1: Create base configs for spruce and mega oak
         BaseTreeFeatureConfig spruceConfig = new BaseTreeFeatureConfig.Builder(
                 new SimpleBlockStateProvider(MoCBlocks.wyvwoodLog.getDefaultState()),
                 new SimpleBlockStateProvider(MoCBlocks.wyvwoodLeaves.getDefaultState()),
@@ -72,7 +68,6 @@ public class MoCFeatures {
                 Features.SPRUCE.config.minimumSize
         ).setIgnoreVines().build();
 
-// Build MEGA OAK config
         BaseTreeFeatureConfig megaOakConfig = new BaseTreeFeatureConfig.Builder(
                 new SimpleBlockStateProvider(MoCBlocks.wyvwoodLog.getDefaultState()),
                 new SimpleBlockStateProvider(MoCBlocks.wyvwoodLeaves.getDefaultState()),
@@ -81,20 +76,20 @@ public class MoCFeatures {
                 Features.DARK_OAK.config.minimumSize
         ).setIgnoreVines().build();
 
-// Create individual configured features (not used directly)
-        ConfiguredFeature<BaseTreeFeatureConfig, ?> WYVERN_TREE_SPRUCE = randomTreeFeature.withConfiguration(spruceConfig);
-        ConfiguredFeature<BaseTreeFeatureConfig, ?> WYVERN_TREE_MEGA_OAK = randomTreeFeature.withConfiguration(megaOakConfig);
+// Step 2: Create temporary configured features with no placement
+        ConfiguredFeature<BaseTreeFeatureConfig, ?> tempSpruce = Feature.TREE.withConfiguration(spruceConfig);
+        WYVERN_TREE_SPRUCE = Feature.TREE.withConfiguration(spruceConfig);
+        ConfiguredFeature<BaseTreeFeatureConfig, ?> tempMegaOak = Feature.TREE.withConfiguration(megaOakConfig);
+        WYVERN_TREE_MEGA_OAK = Feature.TREE.withConfiguration(megaOakConfig);
 
-// Register the random variant feature (runtime picks one)
-        Feature<BaseTreeFeatureConfig> safeRandomTree = new SafeWyvernTreeFeature(
-                WYVERN_TREE_SPRUCE,
-                WYVERN_TREE_MEGA_OAK
-        );
+// Step 3: Build SafeWyvernTreeFeature with variants
+        Feature<BaseTreeFeatureConfig> safeRandomTree = new SafeWyvernTreeFeature(tempSpruce, tempMegaOak);
         safeRandomTree.setRegistryName("mocreatures", "wyvern_tree_random");
         event.getRegistry().register(safeRandomTree);
 
-        WYVERN_TREE_RANDOM = safeRandomTree
-                .withConfiguration(spruceConfig) // Dummy config; unused internally
+// Step 4: Register final configured feature using one dummy config (required by Forge)
+        WYVERN_TREE_RANDOM = (ConfiguredFeature<BaseTreeFeatureConfig, ?>) (
+                safeRandomTree.withConfiguration(spruceConfig))
                 .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
         Registry.register(WorldGenRegistries.CONFIGURED_FEATURE,
@@ -103,8 +98,6 @@ public class MoCFeatures {
 
         System.out.println("[MoC] Registered Wyvern Trees with random variant support.");
 
-
-        System.out.println("[MoC] Registered Wyvern Trees.");
 
         // Ores
         RuleTest wyvStoneReplaceable = new BlockMatchRuleTest(MoCBlocks.wyvstone);

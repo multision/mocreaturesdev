@@ -1,4 +1,4 @@
-itemGroup.MoCreaturesTab=DrZhark's Mo'Creatures Extended
+itemGroup.MoCreaturesTab=Mo' Creatures: Nostalgia Edition
 
 # BLOCKS
 tile.mocreatures.ancient_ore.name=Altes Erz
@@ -353,7 +353,7 @@ msg.mocreatures.bed2=Das Bett fühlt sich kalt an.
 msg.mocreatures.bed3=Ein Gefühl der Dringlichkeit überkommt dich. Du kannst hier nicht schlafen.
 msg.mocreatures.bed4=Wenigstens explodiert es nicht.
 msg.mocreatures.compat.cms=„Custom Mob Spawner“ erkannt!
-#msg.mocreatures.compat.cms1=Mo' Creatures Extended is built around the vanilla spawner, Custom Mob Spawner is no longer needed.
+#msg.mocreatures.compat.cms1=Mo' Creatures: Nostalgia Edition is built around the vanilla spawner, Custom Mob Spawner is no longer needed.
 msg.mocreatures.compat.cms2=Bitte bedenke „Custom Mob Spawner“ zu entfernen, um negative Auswirkungen auf das Gameplay zu vermeiden.
 #msg.mocreatures.egg=Egg schlüpft bald! KEEP WATCH! The hatched creature located at %s, %s, %s will be lost if you leave the area.
 msg.mocreatures.foreignpet=Dieses Haustier gehört dir nicht.

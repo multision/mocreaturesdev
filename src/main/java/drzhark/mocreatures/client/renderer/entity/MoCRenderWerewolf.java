@@ -27,28 +27,28 @@ public class MoCRenderWerewolf<M extends EntityModel<MoCEntityWerewolf>> extends
 
     public MoCRenderWerewolf(EntityRendererManager renderManagerIn, MoCModelWerehuman modelwerehuman, M modelbase, float f) {
         super(renderManagerIn, modelbase, f);
+        this.tempWerewolf = (MoCModelWerewolf) modelbase;
         this.addLayer(new LayerMoCWereHuman(this));
-        this.tempWerewolf = (MoCModelWerewolf)modelbase;
     }
 
     @Override
-    public void render(MoCEntityWerewolf entitywerewolf, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        this.tempWerewolf.hunched = entitywerewolf.getIsHunched();
-        super.render(entitywerewolf, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
-
+    public void render(MoCEntityWerewolf entity, float entityYaw, float partialTicks,
+                       MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+        this.tempWerewolf.hunched = entity.getIsHunched();
+        super.render(entity, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     @Override
-    public ResourceLocation getEntityTexture(MoCEntityWerewolf entitywerewolf) {
-        return entitywerewolf.getTexture();
+    public ResourceLocation getEntityTexture(MoCEntityWerewolf entity) {
+        return entity.getTexture();
     }
 
-    private class LayerMoCWereHuman<M extends MoCModelWerehuman<MoCEntityWerewolf>> extends LayerRenderer<MoCEntityWerewolf, M> {
+    private class LayerMoCWereHuman extends LayerRenderer<MoCEntityWerewolf, M> {
 
-        private final MoCRenderWerewolf renderer;
+        private final MoCRenderWerewolf<M> renderer;
         private final MoCModelWerehuman<MoCEntityWerewolf> humanModel = new MoCModelWerehuman<>();
 
-        public LayerMoCWereHuman(MoCRenderWerewolf renderer) {
+        public LayerMoCWereHuman(MoCRenderWerewolf<M> renderer) {
             super(renderer);
             this.renderer = renderer;
         }
@@ -57,10 +57,9 @@ public class MoCRenderWerewolf<M extends EntityModel<MoCEntityWerewolf>> extends
         public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn,
                            MoCEntityWerewolf entity, float limbSwing, float limbSwingAmount, float partialTicks,
                            float ageInTicks, float netHeadYaw, float headPitch) {
+            if (!entity.getIsHumanForm()) return;
 
-            if (!entity.getIsHumanForm()) return; // Only render in human form
-
-            // Pick correct texture for human type
+            // Pick correct texture
             ResourceLocation texture;
             switch (entity.getTypeMoC()) {
                 case 1:
@@ -76,22 +75,21 @@ public class MoCRenderWerewolf<M extends EntityModel<MoCEntityWerewolf>> extends
                     texture = MoCreatures.proxy.getModelTexture("werehuman_oldie.png");
             }
 
-            // Set model pose and animation
-            this.humanModel.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            this.humanModel.setLivingAnimations(entity, limbSwing, limbSwingAmount, partialTicks);
-            this.humanModel.copyModelAttributesTo(this.renderer.getEntityModel());
+            // Sync animation and pose
+            humanModel.setRotationAngles(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+            humanModel.setLivingAnimations(entity, limbSwing, limbSwingAmount, partialTicks);
+            this.getEntityModel().copyModelAttributesTo(humanModel); // ✅ CORRECT direction
 
-            // Scale model to full size
             matrixStackIn.push();
-            //matrixStackIn.scale(1.0F, 1.0F, 1.0F); // You can tweak this if it's still off
-            //matrixStackIn.scale(1.0F, 1.0F, 1.0F);
 
-            // Render the human model
+            // ✅ Optional scale fix
+            //matrixStackIn.translate(0.0D, -0.05D, 0.0D); // Try -0.1D or -0.0625D if needed
+
+            matrixStackIn.scale(1.0F, 1.0F, 1.0F); // Adjust if needed
+
             IVertexBuilder ivertexbuilder = bufferIn.getBuffer(RenderType.getEntityCutoutNoCull(texture));
-
-            this.humanModel.render(matrixStackIn, ivertexbuilder, packedLightIn,
-                    OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-
+            humanModel.render(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY,
+                    1.0F, 1.0F, 1.0F, 1.0F);
 
             matrixStackIn.pop();
         }
