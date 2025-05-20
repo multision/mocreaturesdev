@@ -33,8 +33,8 @@ public class MoCWorldGenEvents {
                 System.out.println("[MoC] Warning: ConfiguredFeature is still null during biome load!");
             }
 
-            //event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MoCFeatures.WYVERN_TREE_SPRUCE);
-            //event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MoCFeatures.WYVERN_TREE_MEGA_OAK);
+            event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MoCFeatures.WYVERN_TREE_SPRUCE);
+            event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MoCFeatures.WYVERN_TREE_MEGA_OAK);
             event.getGeneration().withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, MoCFeatures.WYVERN_TREE_RANDOM);
 
             event.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_ORES).add(() -> MoCFeatures.WYV_IRON_ORE);

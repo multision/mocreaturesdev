@@ -78,7 +78,9 @@ public class MoCFeatures {
 
 // Step 2: Create temporary configured features with no placement
         ConfiguredFeature<BaseTreeFeatureConfig, ?> tempSpruce = Feature.TREE.withConfiguration(spruceConfig);
+        WYVERN_TREE_SPRUCE = Feature.TREE.withConfiguration(spruceConfig);
         ConfiguredFeature<BaseTreeFeatureConfig, ?> tempMegaOak = Feature.TREE.withConfiguration(megaOakConfig);
+        WYVERN_TREE_MEGA_OAK = Feature.TREE.withConfiguration(megaOakConfig);
 
 // Step 3: Build SafeWyvernTreeFeature with variants
         Feature<BaseTreeFeatureConfig> safeRandomTree = new SafeWyvernTreeFeature(tempSpruce, tempMegaOak);
