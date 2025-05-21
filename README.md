@@ -4,8 +4,8 @@
 
 **Nostalgia Team:**
 
-* Lead Developer, Codebase Cleanup, Spawn Logic, General Maintenance ~ multision
-* Project setup, bugfixes ~ [TheidenHD](https://github.com/TheidenHD/mocreaturesdev)
+* Lead Developer, Codebase Cleanup, General Maintenance ~ multision
+* Project setup, Spawn Logic, Codebase Cleanup, bugfixes ~ [TheidenHD](https://github.com/TheidenHD/mocreaturesdev)
 
 **Legacy Team [v12.1.0 and below]:**
 
