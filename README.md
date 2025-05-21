@@ -1,28 +1,20 @@
 ![DrZhark's Mo'Creatures Extended](logo_ext_small.png)
 
-### Continued maintenance for Mo'Creatures in 1.12.2
+### Continued maintenance for Mo'Creatures in 1.16.5 & 1.20.1
 
-**Extended Team [v12.1.0 and upwards]:**
+**Nostalgia Team:**
 
-* Lead Developer, Codebase Cleanup, Spawn Logic, General Maintenance ~ ACGaming
-* Developer, Sound Artist, Language/Model Adjustments, General Maintenance ~ IcarussOne
-* QA Analyst & Testing, Entity Spawn Rules ~ xJon
+* Lead Developer, Codebase Cleanup, Spawn Logic, General Maintenance ~ multision
+* Project setup, bugfixes ~ [TheidenHD](https://github.com/TheidenHD/mocreaturesdev)
 
-**Legacy Team [v12.0.5 and below]:**
+**Legacy Team [v12.1.0 and below]:**
 
 * Author, Coding, AI, Animations, Models, Textures ~ DrZhark
 * Models, Textures ~ BlockDaddy
 * Coding ~ Bloodshot
 
-**Special Thanks:**
+**Special Thanks: Extended Team**
 
-- Project Setup, Bugfixes, Turkey Breeding ~ Dockter
-- Filch Lizards from Primitive Mobs (with permission!) ~ Daveyx0
-- Some assets used from their texture repository ~ MCThe_Paragon (Malcolm Riley)
-- New Shark Model ~ Foreck
-
-**Additional Contributors:**
-
-- French Translation ~ nocturni
-- German Translation ~ magiczocker10
-- Donkey & Mule Texture Tweaks ~ Deino
+* Lead Developer, Codebase Cleanup, Spawn Logic, General Maintenance ~ ACGaming
+* Developer, Sound Artist, Language/Model Adjustments, General Maintenance ~ IcarussOne
+* QA Analyst & Testing, Entity Spawn Rules ~ xJon
