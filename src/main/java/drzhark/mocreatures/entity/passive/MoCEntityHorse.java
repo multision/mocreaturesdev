@@ -1932,13 +1932,15 @@ public class MoCEntityHorse extends MoCEntityTameableAnimal {
 
                 if (!flag && !readyForParenting((MoCEntityHorse) horsemate)) return;
 
-                if (this.rand.nextInt(100) == 0) this.gestationTime++;
+                //if (this.rand.nextInt(100) == 0) this.gestationTime++;
+                this.gestationTime++; // Always increment, instead of taking a 1% chance
 
                 if (this.gestationTime % 3 == 0) {
                     MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with( () -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, this.world.getDimensionKey())), new MoCMessageHeart(this.getEntityId()));
                 }
 
-                if (this.gestationTime <= 50) continue;
+                //if (this.gestationTime <= 50) continue;
+                if (this.gestationTime <= 300) continue; // Instead of RNG delay, it takes ~15 seconds to breed.
 
                 MoCEntityHorse baby = MoCEntities.WILDHORSE.create(this.world);
                 baby.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());

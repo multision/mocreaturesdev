@@ -3,14 +3,9 @@
  */
 package drzhark.mocreatures.event;
 
-import drzhark.mocreatures.client.renderer.fx.MoCEntityFXUndead;
-import drzhark.mocreatures.client.renderer.fx.MoCParticles;
 import drzhark.mocreatures.compat.CompatScreen;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.MainMenuScreen;
-import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;

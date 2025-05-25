@@ -13,6 +13,7 @@ import drzhark.mocreatures.entity.tameable.MoCEntityTameableAnimal;
 import drzhark.mocreatures.init.MoCEntities;
 import drzhark.mocreatures.init.MoCItems;
 import drzhark.mocreatures.init.MoCSoundEvents;
+import drzhark.mocreatures.item.MoCItemEgg;
 import drzhark.mocreatures.network.MoCMessageHandler;
 import drzhark.mocreatures.network.message.MoCMessageAnimation;
 import net.minecraft.block.BlockState;
@@ -497,7 +498,12 @@ public class MoCEntitySnake extends MoCEntityTameableAnimal {
             int j = this.rand.nextInt(3);
             for (int l = 0; l < j; l++) {
 
-                entityDropItem(new ItemStack(MoCItems.mocegg, 1), 0.0F);
+                int snakeEggType = getTypeMoC() + 20;
+                ItemStack snakeEgg = new ItemStack(MoCItems.mocegg, 1);
+
+                snakeEgg.getOrCreateTag().putInt("EggType", snakeEggType);
+
+                entityDropItem(snakeEgg, 0.0F);
             }
         }
     }

@@ -21,7 +21,9 @@ import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -111,13 +113,18 @@ public class MoCEntityFishy extends MoCEntityTameableAquatic {
     protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
         int i = this.rand.nextInt(100);
         if (i < 70) {
-            //entityDropItem(new ItemStack(Items.FISH, 1, 0), 0.0F);
+            Item[] fishTypes = new Item[] { Items.COD, Items.SALMON, Items.TROPICAL_FISH };
+            Item fish = fishTypes[this.rand.nextInt(fishTypes.length)];
+            entityDropItem(new ItemStack(fish), 0.0F);
         } else {
             int j = this.rand.nextInt(2);
-            for (int k = 0; k < j; k++) {
-                //entityDropItem(new ItemStack(MoCItems.mocegg[getTypeMoC()], 1), 0.0F); //TODO TheidenHD
-            }
 
+            int fishyEggType = getTypeMoC();
+            ItemStack fishyEgg = new ItemStack(MoCItems.mocegg, j);
+
+            fishyEgg.getOrCreateTag().putInt("EggType", fishyEggType);
+
+            entityDropItem(fishyEgg, 0.0F);
         }
     }
 

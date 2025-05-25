@@ -48,7 +48,13 @@
         {
           "type": "item",
           "name": "mocreatures:mocegg",
-          "weight": 1
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_nbt",
+              "tag": "{EggType:84}"
+            }
+          ]
         }
       ]
     }

@@ -1,4 +1,4 @@
-package drzhark.mocreatures.client.renderer.fx;
+package drzhark.mocreatures.client.renderer.fx.data;
 
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.util.ResourceLocation;

@@ -1,8 +1,10 @@
 package drzhark.mocreatures.shaders;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import drzhark.mocreatures.client.renderer.fx.MoCEntityFXUndead;
-import drzhark.mocreatures.client.renderer.fx.MoCEntityFXVanish;
+import drzhark.mocreatures.client.renderer.fx.data.VacuumParticleData;
+import drzhark.mocreatures.client.renderer.fx.impl.MoCEntityFXStar;
+import drzhark.mocreatures.client.renderer.fx.impl.MoCEntityFXUndead;
+import drzhark.mocreatures.client.renderer.fx.impl.MoCEntityFXVacuum;
+import drzhark.mocreatures.client.renderer.fx.impl.MoCEntityFXVanish;
 import drzhark.mocreatures.client.renderer.fx.MoCParticles;
 import drzhark.mocreatures.init.MoCBlocks;
 import net.minecraft.client.Minecraft;
@@ -18,7 +20,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = "mocreatures", value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MoCClientEvents {
 
-    public static IAnimatedSprite UNDEAD_SPRITE_SET, VANISH_SPRITE_SET;
+    public static IAnimatedSprite UNDEAD_SPRITE_SET, VANISH_SPRITE_SET, STAR_SPRITE_SET, VACUUM_SPRITE_SET;
 
     @SubscribeEvent
     public static void onParticleFactoryRegister(ParticleFactoryRegisterEvent event) {
@@ -35,6 +37,22 @@ public class MoCClientEvents {
                 spriteSet -> {
                     VANISH_SPRITE_SET = spriteSet;
                     return new MoCEntityFXVanish.Factory(spriteSet);
+                }
+        );
+
+        Minecraft.getInstance().particles.registerFactory(
+                MoCParticles.STAR_FX.get(),
+                spriteSet -> {
+                    STAR_SPRITE_SET = spriteSet;
+                    return new MoCEntityFXStar.Factory(spriteSet);
+                }
+        );
+
+        Minecraft.getInstance().particles.registerFactory(
+                MoCParticles.VACUUM_FX.get(),
+                spriteSet -> {
+                    VACUUM_SPRITE_SET = spriteSet;
+                    return new MoCEntityFXVacuum.Factory(spriteSet);
                 }
         );
 
