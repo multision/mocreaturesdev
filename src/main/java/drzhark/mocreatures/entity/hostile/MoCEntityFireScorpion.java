@@ -23,6 +23,11 @@ public class MoCEntityFireScorpion extends MoCEntityScorpion {
         experienceValue = 7;
     }
 
+    @Override
+    public boolean isImmuneToFire() {
+        return true;
+    }
+
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MoCEntityScorpion.registerAttributes().createMutableAttribute(Attributes.FOLLOW_RANGE, 24.0D).createMutableAttribute(Attributes.MAX_HEALTH, 30.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.34D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0D).createMutableAttribute(Attributes.ARMOR, 5.0D);
     }

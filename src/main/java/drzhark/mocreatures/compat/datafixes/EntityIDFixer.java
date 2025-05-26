@@ -78,7 +78,6 @@ package drzhark.mocreatures.compat.datafixes;
 import drzhark.mocreatures.MoCConstants;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.event.RegistryEvent.MissingMappings;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraft.util.ResourceLocation;

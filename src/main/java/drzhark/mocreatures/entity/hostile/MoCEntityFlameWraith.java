@@ -31,6 +31,11 @@ public class MoCEntityFlameWraith extends MoCEntityWraith implements IMob {
         experienceValue = 7;
     }
 
+    @Override
+    public boolean isImmuneToFire() {
+        return true;
+    }
+
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MoCEntityWraith.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 25.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0D);
     }

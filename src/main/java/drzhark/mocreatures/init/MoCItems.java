@@ -162,6 +162,10 @@ public class MoCItems {
     public static final MoCItemArmor helmetHide = new MoCItemArmor(new Item.Properties(), "hidehelmet", MoCArmorMaterial.hideARMOR, EquipmentSlotType.HEAD);
     public static final MoCItemArmor legsHide = new MoCItemArmor(new Item.Properties(), "hidelegs", MoCArmorMaterial.hideARMOR, EquipmentSlotType.LEGS);
     public static final MoCItemArmor bootsHide = new MoCItemArmor(new Item.Properties(), "hideboots", MoCArmorMaterial.hideARMOR, EquipmentSlotType.FEET);
+    public static final MoCItemArmor chestSilver = new MoCItemArmor(new Item.Properties(), "ancient_silver_chestplate", MoCArmorMaterial.silverARMOR, EquipmentSlotType.CHEST);
+    public static final MoCItemArmor helmetSilver = new MoCItemArmor(new Item.Properties(), "ancient_silver_helmet", MoCArmorMaterial.silverARMOR, EquipmentSlotType.HEAD);
+    public static final MoCItemArmor legsSilver = new MoCItemArmor(new Item.Properties(), "ancient_silver_leggings", MoCArmorMaterial.silverARMOR, EquipmentSlotType.LEGS);
+    public static final MoCItemArmor bootsSilver = new MoCItemArmor(new Item.Properties(), "ancient_silver_boots", MoCArmorMaterial.silverARMOR, EquipmentSlotType.FEET);
 
     @Mod.EventBusSubscriber(modid = MoCConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistrationHandler {
@@ -202,6 +206,10 @@ public class MoCItems {
                     ancientSilverScrap,
                     ancientSilverIngot,
                     ancientSilverNugget,
+                    chestSilver,
+                    helmetSilver,
+                    legsSilver,
+                    bootsSilver,
                     firestoneChunk,
 
                     nunchaku,

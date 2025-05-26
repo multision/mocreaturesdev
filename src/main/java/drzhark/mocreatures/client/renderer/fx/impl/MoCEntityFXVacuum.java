@@ -3,10 +3,8 @@
  */
 package drzhark.mocreatures.client.renderer.fx.impl;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import drzhark.mocreatures.client.renderer.fx.data.VacuumParticleData;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

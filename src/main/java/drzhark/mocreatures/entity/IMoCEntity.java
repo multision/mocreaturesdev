@@ -3,15 +3,9 @@
  */
 package drzhark.mocreatures.entity;
 
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
 
-import java.util.Random;
 import java.util.UUID;
 
 public interface IMoCEntity {

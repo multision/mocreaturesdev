@@ -21,6 +21,11 @@ public class MoCEntityFireOgre extends MoCEntityOgre {
         //this.isImmuneToFire = true;
     }
 
+    @Override
+    public boolean isImmuneToFire() {
+        return true;
+    }
+
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MoCEntityOgre.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 65.0D).createMutableAttribute(Attributes.ARMOR, 9.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 7.5D);
     }

@@ -5,7 +5,6 @@ package drzhark.mocreatures.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.AbstractGlassBlock;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraftforge.common.ToolType;
 

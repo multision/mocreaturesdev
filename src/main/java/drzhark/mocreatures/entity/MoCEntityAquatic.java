@@ -14,7 +14,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.passive.WaterMobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
@@ -24,7 +23,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.pathfinding.SwimmerPathNavigator;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
@@ -33,7 +31,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
@@ -415,6 +412,17 @@ public abstract class MoCEntityAquatic extends WaterMobEntity implements IMoCEnt
         } else {
             this.outOfWater++;
             this.setMotion(this.getMotion().subtract(0.0F, 0.1F, 0.0F));
+
+            if (this.onGround && this.outOfWater % 20 == 0) {
+                // Push the fish in a random direction and a bit upward
+                this.setMotion(
+                        (this.rand.nextDouble() - 0.5D) * 0.5D,
+                        0.4D,
+                        (this.rand.nextDouble() - 0.5D) * 0.5D
+                );
+                this.isAirBorne = true;
+            }
+
             if (this.outOfWater > 20) {
                 this.getNavigator().clearPath();
             }

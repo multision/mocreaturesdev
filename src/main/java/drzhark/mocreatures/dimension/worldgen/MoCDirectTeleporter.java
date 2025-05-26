@@ -1,20 +1,15 @@
 package drzhark.mocreatures.dimension.worldgen;
 
-import com.mojang.serialization.Codec;
 import drzhark.mocreatures.dimension.worldgen.MoCWorldGenPortal;
-import drzhark.mocreatures.init.MoCBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.ITeleporter;
 
-import java.util.Random;
 import java.util.function.Function;
 
 public class MoCDirectTeleporter implements ITeleporter {

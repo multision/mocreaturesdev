@@ -5,7 +5,6 @@ package drzhark.mocreatures.network.message;
 
 import drzhark.mocreatures.client.gui.MoCGUIEntityNamer;
 import drzhark.mocreatures.entity.IMoCEntity;
-import drzhark.mocreatures.proxy.MoCProxyClient;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;

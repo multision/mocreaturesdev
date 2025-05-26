@@ -23,6 +23,11 @@ public class MoCEntityFireManticore extends MoCEntityManticore {
         experienceValue = 10;
     }
 
+    @Override
+    public boolean isImmuneToFire() {
+        return true;
+    }
+
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MoCEntityManticore.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 50.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.4D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 7.5D);
     }

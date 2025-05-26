@@ -3,16 +3,10 @@ package drzhark.mocreatures.init;
 // Call this after your entity and biome registrations are complete.
 // Likely inside FMLCommonSetupEvent (deferred) or directly via DeferredWorkQueue.runLater
 
-import drzhark.mocreatures.dimension.biome.MoCBiomes;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
 

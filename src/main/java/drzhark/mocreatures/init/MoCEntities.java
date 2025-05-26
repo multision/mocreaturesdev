@@ -28,7 +28,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Tuple;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
@@ -365,28 +364,5 @@ public class MoCEntities {
                 }
             }
         }
-
-        /*@SubscribeEvent(priority = EventPriority.HIGH)
-        public static void registerSpawns(BiomeLoadingEvent event) {
-            if (event.getName() != null) {
-                Biome biome = ForgeRegistries.BIOMES.getValue(event.getName());
-                if (biome != null) {
-                    for (MoCEntityData entityData : MoCreatures.mocEntityMap.values()) {
-                        // Skip entities early that are disabled
-                        if (!entityData.getCanSpawn() || entityData.getFrequency() <= 0) {
-                            continue;
-                        }
-
-                        RegistryKey<Biome> biomeKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, event.getName());
-                        List<BiomeDictionary.Type> includeList = entityData.getBiomeTypes();
-                        List<BiomeDictionary.Type> excludeList = entityData.getBlockedBiomeTypes();
-                        Set<Type> biomeTypes = BiomeDictionary.getTypes(biomeKey);
-                        if (biomeTypes.stream().noneMatch(excludeList::contains) && biomeTypes.stream().anyMatch(includeList::contains)) {
-                            event.getSpawns().getSpawner(entityData.getType()).add(entityData.getSpawnListEntry());
-                        }
-                    }
-                }
-            }
-        }*/
     }
 }

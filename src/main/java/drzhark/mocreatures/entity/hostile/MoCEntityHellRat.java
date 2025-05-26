@@ -28,6 +28,11 @@ public class MoCEntityHellRat extends MoCEntityRat {
         experienceValue = 7;
     }
 
+    @Override
+    public boolean isImmuneToFire() {
+        return true;
+    }
+
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MoCEntityRat.registerAttributes().createMutableAttribute(Attributes.MAX_HEALTH, 40.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.325D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.5D).createMutableAttribute(Attributes.ARMOR, 7.0D);
     }

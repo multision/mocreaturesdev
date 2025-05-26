@@ -3,16 +3,9 @@
  */
 package drzhark.mocreatures.client.renderer.fx.impl;
 
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import drzhark.mocreatures.client.renderer.fx.data.StarParticleData;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 

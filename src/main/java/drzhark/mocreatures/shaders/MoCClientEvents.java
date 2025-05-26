@@ -1,6 +1,5 @@
 package drzhark.mocreatures.shaders;
 
-import drzhark.mocreatures.client.renderer.fx.data.VacuumParticleData;
 import drzhark.mocreatures.client.renderer.fx.impl.MoCEntityFXStar;
 import drzhark.mocreatures.client.renderer.fx.impl.MoCEntityFXUndead;
 import drzhark.mocreatures.client.renderer.fx.impl.MoCEntityFXVacuum;

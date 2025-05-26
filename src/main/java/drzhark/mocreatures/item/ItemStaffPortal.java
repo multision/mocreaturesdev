@@ -5,8 +5,6 @@ package drzhark.mocreatures.item;
 
 import drzhark.mocreatures.MoCreatures;
 import drzhark.mocreatures.dimension.worldgen.MoCDirectTeleporter;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;

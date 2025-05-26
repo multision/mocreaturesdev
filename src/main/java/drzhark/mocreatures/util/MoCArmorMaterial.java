@@ -39,7 +39,7 @@ public enum MoCArmorMaterial implements IArmorMaterial {
         return Ingredient.fromItems(MoCItems.chitinUndead);
     }),
     silverARMOR("silverARMOR", 15, new int[]{2, 6, 5, 2}, 22, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 1.5F, 0.0F, () -> {
-        return Ingredient.EMPTY;
+        return Ingredient.fromItems(MoCItems.ancientSilverIngot);
     });
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
     private final String name;

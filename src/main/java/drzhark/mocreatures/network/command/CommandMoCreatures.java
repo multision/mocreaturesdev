@@ -3,33 +3,11 @@
  */
 package drzhark.mocreatures.network.command;
 
-import com.mojang.authlib.GameProfile;
-import drzhark.mocreatures.MoCConstants;
-import drzhark.mocreatures.MoCTools;
-import drzhark.mocreatures.MoCreatures;
-import drzhark.mocreatures.config.MoCConfigCategory;
-import drzhark.mocreatures.config.MoCConfiguration;
-import drzhark.mocreatures.config.MoCProperty;
-import drzhark.mocreatures.entity.MoCEntityData;
-import drzhark.mocreatures.entity.tameable.IMoCTameable;
-import drzhark.mocreatures.entity.tameable.MoCPetData;
 import net.minecraft.command.CommandSource;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.server.ServerWorld;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class CommandMoCreatures {
 

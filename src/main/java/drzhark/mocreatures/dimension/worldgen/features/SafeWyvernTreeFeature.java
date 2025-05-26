@@ -1,8 +1,6 @@
 package drzhark.mocreatures.dimension.worldgen.features;
 
-import com.mojang.serialization.Codec;
 import drzhark.mocreatures.init.MoCBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
@@ -11,7 +9,6 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.TreeFeature;
 
 import java.util.Random;
 
