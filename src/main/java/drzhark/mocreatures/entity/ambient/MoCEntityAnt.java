@@ -62,6 +62,10 @@ public class MoCEntityAnt extends MoCEntityAmbient {
     public void livingTick() {
         super.livingTick();
 
+        if (this.isInWater()) {
+            this.setMotion(this.getMotion().mul(1.0D, 0.6D, 1.0D));
+        }
+
         if (!this.world.isRemote) {
             if (!getHasFood()) {
                 ItemEntity entityitem = MoCTools.getClosestFood(this, 8D);

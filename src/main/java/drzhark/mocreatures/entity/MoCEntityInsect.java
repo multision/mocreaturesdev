@@ -59,20 +59,20 @@ public abstract class MoCEntityInsect extends MoCEntityAmbient {
 
     @Override
     public boolean getIsFlying() {
-        return (isOnAir() || !onGround) && (getMotion().getX() != 0 || getMotion().getY() != 0 || getMotion().getZ() != 0);
+        return this.isOnAir() && !this.isOnLadder();
     }
 
     @Override
     public void livingTick() {
         super.livingTick();
 
-        if (!this.onGround && this.getMotion().getY() < 0.0D) {
+        if (this.isInWater()) {
             this.setMotion(this.getMotion().mul(1.0D, 0.6D, 1.0D));
         }
 
         if (!this.world.isRemote) {
-            if (isAttractedToLight() && this.rand.nextInt(50) == 0) {
-                int[] ai = MoCTools.returnNearestBlockCoord(this, Blocks.TORCH, 8D);
+            if (this.rand.nextInt(50) == 0) {
+                int[] ai = MoCTools.returnNearestBlockCoord(this, this.isAttractedToLight() ? Blocks.TORCH : Blocks.TALL_GRASS, 8D);
                 if (ai[0] > -1000) {
                     this.getNavigator().tryMoveToXYZ(ai[0], ai[1], ai[2], 1.0D);
                 }
@@ -105,7 +105,7 @@ public abstract class MoCEntityInsect extends MoCEntityAmbient {
     }
 
     public boolean climbing() {
-        return (this.climbCounter != 0);
+        return this.climbCounter != 0;
     }
 
     @Override

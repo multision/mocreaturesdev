@@ -17,6 +17,7 @@ import drzhark.mocreatures.network.message.MoCMessageAnimation;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.player.PlayerEntity;
@@ -64,11 +65,12 @@ public class MoCEntityKomodo extends MoCEntityTameableAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(2, new EntityAIPanicMoC(this, 1.1D));
         this.goalSelector.addGoal(3, new EntityAIFleeFromPlayer(this, 1.1D, 4D));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(7, new EntityAIWanderMoC2(this, 0.9D));
         this.goalSelector.addGoal(9, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        //this.targetSelector.addGoal(1, new EntityAIHunt<>(this, AnimalEntity.class, true));
-        this.targetSelector.addGoal(2, new EntityAIHunt<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        //this.targetSelector.addGoal(2, new EntityAIHunt<>(this, AnimalEntity.class, true));
+        this.targetSelector.addGoal(3, new EntityAIHunt<>(this, PlayerEntity.class, false));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {

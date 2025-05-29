@@ -67,6 +67,7 @@ public abstract class MoCEntityAnimal extends AnimalEntity implements IMoCEntity
     protected PathNavigator navigatorWater;
     protected PathNavigator navigatorFlyer;
     private int huntingCounter;
+    private int followPlayerCounter;
     private double divingDepth;
     private boolean randomAttributesUpdated; //used to update divingDepth on world load
 
@@ -300,10 +301,16 @@ public abstract class MoCEntityAnimal extends AnimalEntity implements IMoCEntity
 
             if (MoCreatures.proxy.enableHunters && this.isReadyToHunt() && !this.getIsHunting() && this.rand.nextInt(500) == 0) {
                 setIsHunting(true);
+            } else if (!this.getIsHunting() && this.isReadyToFollowOwnerPlayer() && !this.getIsFollowingOwnerPlayer() && this.rand.nextInt(60) == 0) {
+                setIsFollowingOwnerPlayer(true);
             }
 
             if (getIsHunting() && ++this.huntingCounter > 50) {
                 setIsHunting(false);
+            }
+
+            if (this.getIsFollowingOwnerPlayer() && ++this.followPlayerCounter > 50) {
+                setIsFollowingOwnerPlayer(false);
             }
 
             this.getNavigator().tick();
@@ -853,6 +860,10 @@ public abstract class MoCEntityAnimal extends AnimalEntity implements IMoCEntity
         return false;
     }
 
+    public boolean isReadyToFollowOwnerPlayer() {
+        return false;
+    }
+
     @Override
     public boolean canBeLeashedTo(PlayerEntity player) {
         if (!this.world.isRemote && !MoCTools.isThisPlayerAnOP(player) && this.getIsTamed() && !player.getUniqueID().equals(this.getOwnerId())) {
@@ -880,6 +891,17 @@ public abstract class MoCEntityAnimal extends AnimalEntity implements IMoCEntity
             this.huntingCounter = this.rand.nextInt(30) + 1;
         } else {
             this.huntingCounter = 0;
+        }
+    }
+
+    public boolean getIsFollowingOwnerPlayer() {
+        return this.followPlayerCounter != 0;
+    }
+    public void setIsFollowingOwnerPlayer(boolean flag) {
+        if (flag) {
+            this.followPlayerCounter = this.rand.nextInt(30) + 1;
+        } else {
+            this.followPlayerCounter = 0;
         }
     }
 

@@ -19,6 +19,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.player.PlayerEntity;
@@ -74,11 +75,12 @@ public class MoCEntitySnake extends MoCEntityTameableAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(2, new EntityAIPanicMoC(this, 0.8D));
         this.goalSelector.addGoal(3, new EntityAIFleeFromPlayer(this, 0.8D, 4D));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(5, new EntityAIWanderMoC2(this, 0.8D, 30));
         this.goalSelector.addGoal(9, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         //this.targetSelector.addGoal(1, new EntityAIHunt<>(this, AnimalEntity.class, true));
-        this.targetSelector.addGoal(2, new EntityAIHunt<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(3, new EntityAIHunt<>(this, PlayerEntity.class, false));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -456,7 +458,7 @@ public class MoCEntitySnake extends MoCEntityTameableAnimal {
 
     public void setBiting(boolean flag) {
         if (flag && !this.world.isRemote) {
-            MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with( () -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, this.world.getDimensionKey())), new MoCMessageAnimation(this.getEntityId(), 0));
+            MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, this.world.getDimensionKey())), new MoCMessageAnimation(this.getEntityId(), 0));
         }
         this.isBiting = flag;
     }
@@ -575,12 +577,32 @@ public class MoCEntitySnake extends MoCEntityTameableAnimal {
                 }
             }
 
-            if (BiomeDictionary.hasType(currentbiome, Type.PLAINS) || BiomeDictionary.hasType(currentbiome, Type.FOREST)) {
+            if (BiomeDictionary.hasType(currentbiome, Type.PLAINS)) {
                 // dark green or coral or spotted
                 if (l < 3) {
                     setTypeMoC(1);
                 } else if (l < 5) {
                     setTypeMoC(5);
+                } else {
+                    setTypeMoC(2);
+                }
+            }
+
+            if (BiomeDictionary.hasType(currentbiome, Type.SAVANNA)) {
+                // python or spotted or rattlesnake
+                if (l < 4) {
+                    setTypeMoC(8);
+                } else if (l < 8) {
+                    setTypeMoC(2);
+                } else {
+                    setTypeMoC(7);
+                }
+            }
+
+            if (BiomeDictionary.hasType(currentbiome, Type.FOREST)) {
+                // dark green or spotted
+                if (l < 5) {
+                    setTypeMoC(1);
                 } else {
                     setTypeMoC(2);
                 }
@@ -600,34 +622,53 @@ public class MoCEntitySnake extends MoCEntityTameableAnimal {
             if (BiomeDictionary.hasType(currentbiome, Type.JUNGLE)) {
                 // bright green or bright orange or cobra or dark green
                 if (l < 4) {
-                    setTypeMoC(4);
-                } else if (l < 6) {
-                    setTypeMoC(3);
-                } else if (l < 8) {
-                    setTypeMoC(6);
-                } else {
+                    // bright green or bright orange or cobra or python or dark green
+                    if (l < 3) {
+                        setTypeMoC(4);
+                    } else if (l < 6) {
+                    } else if (l < 5) {
+                        setTypeMoC(3);
+                    } else if (l < 8) {
+                    } else if (l < 7) {
+                        setTypeMoC(6);
+                    } else if (l < 9) {
+                        setTypeMoC(8);
+                    } else {
+                        setTypeMoC(1);
+                    }
+                }
+
+                if (BiomeDictionary.hasType(currentbiome, Type.MAGICAL)) {
+                    // dark green
                     setTypeMoC(1);
                 }
-            }
 
-            if (BiomeDictionary.hasType(currentbiome, MoCEntities.WYVERN_LAIR)) {
-                // bright green or bright orange or spotted or dark green
-                if (l < 3) {
-                    setTypeMoC(4);
-                } else if (l < 5) {
-                    setTypeMoC(3);
-                } else if (l < 7) {
-                    setTypeMoC(2);
-                } else {
+                if (BiomeDictionary.hasType(currentbiome, MoCEntities.WYVERN_LAIR)) {
+                    // bright green or bright orange or spotted or dark green
+                    if (l < 3) {
+                        setTypeMoC(4);
+                    } else if (l < 5) {
+                        setTypeMoC(3);
+                    } else if (l < 7) {
+                        setTypeMoC(2);
+                    } else {
+                        setTypeMoC(1);
+                    }
+                }
+
+                if (BiomeDictionary.hasType(currentbiome, Type.MAGICAL)) {
+                    // dark green
                     setTypeMoC(1);
                 }
-            }
 
-            if (getTypeMoC() == 7 && !(BiomeDictionary.hasType(currentbiome, Type.SANDY))) {
-                setTypeMoC(2);
+                if (getTypeMoC() == 7 && !(BiomeDictionary.hasType(currentbiome, Type.SANDY))) {
+                    if (getTypeMoC() == 7 && !(BiomeDictionary.hasType(currentbiome, Type.SANDY) && !(BiomeDictionary.hasType(currentbiome, Type.SAVANNA)))) {
+                        // spotted
+                        setTypeMoC(2);
+                    }
+                }
             }
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) { }
         return true;
     }
 

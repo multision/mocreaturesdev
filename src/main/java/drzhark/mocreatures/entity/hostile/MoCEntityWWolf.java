@@ -53,11 +53,11 @@ public class MoCEntityWWolf extends MoCEntityMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new MoCEntityWWolf.AIWolfAttack(this));
+        this.goalSelector.addGoal(2, new MoCEntityWWolf.AIWolfAttack(this, 1.0D, false));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new MoCEntityWWolf.AIWolfTarget<>(this, PlayerEntity.class));
-        this.targetSelector.addGoal(3, new MoCEntityWWolf.AIWolfTarget<>(this, IronGolemEntity.class));
+        this.targetSelector.addGoal(2, new MoCEntityWWolf.AIWolfTarget<>(this, PlayerEntity.class, false));
+        this.targetSelector.addGoal(3, new MoCEntityWWolf.AIWolfTarget<>(this, IronGolemEntity.class, true));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -213,8 +213,8 @@ public class MoCEntityWWolf extends MoCEntityMob {
     }
 
     static class AIWolfAttack extends MeleeAttackGoal {
-        public AIWolfAttack(MoCEntityWWolf wolf) {
-            super(wolf, 1.0D, true);
+        public AIWolfAttack(MoCEntityWWolf wolf, double speed, boolean useLongMemory) {
+            super(wolf, speed, useLongMemory);
         }
 
         @Override
@@ -236,8 +236,8 @@ public class MoCEntityWWolf extends MoCEntityMob {
     }
 
     static class AIWolfTarget<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-        public AIWolfTarget(MoCEntityWWolf wolf, Class<T> classTarget) {
-            super(wolf, classTarget, true);
+        public AIWolfTarget(MoCEntityWWolf wolf, Class<T> classTarget, boolean checkSight) {
+            super(wolf, classTarget, checkSight);
         }
 
         @Override

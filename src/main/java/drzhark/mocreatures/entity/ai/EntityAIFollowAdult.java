@@ -29,6 +29,9 @@ public class EntityAIFollowAdult extends Goal {
      */
     @Override
     public boolean shouldExecute() {
+        if (((IMoCEntity) this.childAnimal).getIsSitting()) {
+            return false;
+        }
         if ((!(this.childAnimal instanceof IMoCEntity)) || ((IMoCEntity) this.childAnimal).getIsAdult()) {
             return false;
         } else {
@@ -65,6 +68,9 @@ public class EntityAIFollowAdult extends Goal {
      */
     @Override
     public boolean shouldContinueExecuting() {
+        if (((IMoCEntity) this.childAnimal).getIsSitting()) {
+            return false;
+        }
         if (((IMoCEntity) this.childAnimal).getIsAdult()) {
             return false;
         } else if (!this.parentAnimal.isAlive()) {

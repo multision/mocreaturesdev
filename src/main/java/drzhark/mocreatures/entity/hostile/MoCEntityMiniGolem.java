@@ -46,11 +46,11 @@ public class MoCEntityMiniGolem extends MoCEntityMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new MoCEntityMiniGolem.AIGolemAttack(this));
+        this.goalSelector.addGoal(2, new MoCEntityMiniGolem.AIGolemAttack(this, 1.0D, true));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new MoCEntityMiniGolem.AIGolemTarget<>(this, PlayerEntity.class));
-        this.targetSelector.addGoal(3, new MoCEntityMiniGolem.AIGolemTarget<>(this, IronGolemEntity.class));
+        this.targetSelector.addGoal(2, new MoCEntityMiniGolem.AIGolemTarget<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(3, new MoCEntityMiniGolem.AIGolemTarget<>(this, IronGolemEntity.class, true));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -186,8 +186,8 @@ public class MoCEntityMiniGolem extends MoCEntityMob {
     }
 
     static class AIGolemAttack extends MeleeAttackGoal {
-        public AIGolemAttack(MoCEntityMiniGolem golem) {
-            super(golem, 1.0D, true);
+        public AIGolemAttack(MoCEntityMiniGolem golem, double speed, boolean useLongMemory) {
+            super(golem, speed, useLongMemory);
         }
 
         @Override
@@ -209,8 +209,8 @@ public class MoCEntityMiniGolem extends MoCEntityMob {
     }
 
     static class AIGolemTarget<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-        public AIGolemTarget(MoCEntityMiniGolem golem, Class<T> classTarget) {
-            super(golem, classTarget, true);
+        public AIGolemTarget(MoCEntityMiniGolem golem, Class<T> classTarget, boolean checkSight) {
+            super(golem, classTarget, checkSight);
         }
 
         @Override

@@ -1580,6 +1580,9 @@ public class MoCEntityHorse extends MoCEntityTameableAnimal {
 
         if (!stack.isEmpty() && (stack.getItem() == MoCItems.whip) && getIsTamed() && (!this.isBeingRidden())) {
             setSitting(!getIsSitting());// eatinghaystack = !eatinghaystack;
+            setIsJumping(false);
+            getNavigator().clearPath();
+            setAttackTarget(null);
             return ActionResultType.SUCCESS;
         }
 

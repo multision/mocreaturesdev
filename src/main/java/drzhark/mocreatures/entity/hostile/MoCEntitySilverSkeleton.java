@@ -11,10 +11,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -41,9 +39,11 @@ public class MoCEntitySilverSkeleton extends MoCEntityMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(2, new MoCEntitySilverSkeleton.AISkeletonAttack(this, 1.0D, true));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new MoCEntitySilverSkeleton.AISkeletonTarget<>(this, PlayerEntity.class, false));
+        this.targetSelector.addGoal(3, new MoCEntitySilverSkeleton.AISkeletonTarget<>(this, IronGolemEntity.class, false));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -141,12 +141,42 @@ public class MoCEntitySilverSkeleton extends MoCEntityMob {
     protected ResourceLocation getLootTable() {        return MoCLootTables.SILVER_SKELETON;
     }
 
-    @Override
-    protected boolean isHarmedByDaylight() {
-        return true;
-    }
-
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
         return this.getHeight() * 0.905F;
+    }
+
+    static class AISkeletonAttack extends MeleeAttackGoal {
+        public AISkeletonAttack(MoCEntitySilverSkeleton skeleton, double speed, boolean useLongMemory) {
+            super(skeleton, speed, useLongMemory);
+        }
+
+        @Override
+        public boolean shouldContinueExecuting() {
+            float f = this.attacker.getBrightness();
+
+            if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+                this.attacker.setAttackTarget(null);
+                return false;
+            } else {
+                return super.shouldContinueExecuting();
+            }
+        }
+
+        @Override
+        protected double getAttackReachSqr(LivingEntity attackTarget) {
+            return 4.0F + attackTarget.getWidth();
+        }
+    }
+
+    static class AISkeletonTarget<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
+        public AISkeletonTarget(MoCEntitySilverSkeleton skeleton, Class<T> classTarget, boolean checkSight) {
+            super(skeleton, classTarget, checkSight);
+        }
+
+        @Override
+        public boolean shouldExecute() {
+            float f = this.goalOwner.getBrightness();
+            return f < 0.5F && super.shouldExecute();
+        }
     }
 }

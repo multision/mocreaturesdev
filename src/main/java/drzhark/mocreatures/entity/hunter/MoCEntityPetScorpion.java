@@ -401,6 +401,9 @@ public class MoCEntityPetScorpion extends MoCEntityTameableAnimal {
 
         if (!stack.isEmpty() && (stack.getItem() == MoCItems.whip) && getIsTamed() && (!this.isBeingRidden())) {
             setSitting(!getIsSitting());
+            setIsJumping(false);
+            getNavigator().clearPath();
+            setAttackTarget(null);
             return ActionResultType.SUCCESS;
         }
 
@@ -510,6 +513,9 @@ public class MoCEntityPetScorpion extends MoCEntityTameableAnimal {
         }
         return n;
     }
+
+    @Override
+    public boolean isReadyToFollowOwnerPlayer() { return !this.isMovementCeased(); }
 
     // TODO: Overhaul acceptable food
     @Override

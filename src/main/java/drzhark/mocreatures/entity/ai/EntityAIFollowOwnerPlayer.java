@@ -4,6 +4,7 @@
 package drzhark.mocreatures.entity.ai;
 
 import drzhark.mocreatures.entity.IMoCEntity;
+import drzhark.mocreatures.entity.MoCEntityAnimal;
 import drzhark.mocreatures.entity.tameable.IMoCTameable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -51,6 +52,10 @@ public class EntityAIFollowOwnerPlayer extends Goal {
     @Override
     public boolean shouldExecute() {
         if (((IMoCEntity) this.thePet).getIsSitting()) {
+            return false;
+        }
+
+        if (!((MoCEntityAnimal) this.thePet).getIsFollowingOwnerPlayer()) {
             return false;
         }
 

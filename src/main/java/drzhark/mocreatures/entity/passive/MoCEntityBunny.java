@@ -253,6 +253,9 @@ public class MoCEntityBunny extends MoCEntityTameableAnimal {
     }
 
     @Override
+    public boolean isReadyToFollowOwnerPlayer() { return !this.isMovementCeased(); }
+
+    @Override
     public boolean isMyHealFood(ItemStack stack) {
         return !stack.isEmpty() && stack.getItem() == Items.CARROT;
     }

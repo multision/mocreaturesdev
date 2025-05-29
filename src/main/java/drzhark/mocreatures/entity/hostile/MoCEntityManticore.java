@@ -37,12 +37,12 @@ public class MoCEntityManticore extends MoCEntityMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(2, new MoCEntityManticore.AIManticoreAttack(this));
+        this.goalSelector.addGoal(2, new MoCEntityManticore.AIManticoreAttack(this, 1.0D, false));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new MoCEntityManticore.AIManticoreTarget<>(this, PlayerEntity.class));
-        this.targetSelector.addGoal(3, new MoCEntityManticore.AIManticoreTarget<>(this, IronGolemEntity.class));
+        this.targetSelector.addGoal(2, new MoCEntityManticore.AIManticoreTarget<>(this, PlayerEntity.class, false));
+        this.targetSelector.addGoal(3, new MoCEntityManticore.AIManticoreTarget<>(this, IronGolemEntity.class, true));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -234,8 +234,8 @@ public class MoCEntityManticore extends MoCEntityMob {
     }
 
     static class AIManticoreAttack extends MeleeAttackGoal {
-        public AIManticoreAttack(MoCEntityManticore manticore) {
-            super(manticore, 1.0D, true);
+        public AIManticoreAttack(MoCEntityManticore manticore, double speed, boolean useLongMemory) {
+            super(manticore, speed, useLongMemory);
         }
 
         @Override
@@ -257,8 +257,8 @@ public class MoCEntityManticore extends MoCEntityMob {
     }
 
     static class AIManticoreTarget<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-        public AIManticoreTarget(MoCEntityManticore manticore, Class<T> classTarget) {
-            super(manticore, classTarget, true);
+        public AIManticoreTarget(MoCEntityManticore manticore, Class<T> classTarget, boolean checkSight) {
+            super(manticore, classTarget, checkSight);
         }
 
         @Override

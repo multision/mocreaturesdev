@@ -41,7 +41,7 @@ public class MoCEntityRaccoon extends MoCEntityTameableAnimal {
         this.goalSelector.addGoal(3, new EntityAIFleeFromPlayer(this, 1.0D, 4D));
         this.goalSelector.addGoal(3, new EntityAIFollowOwnerPlayer(this, 0.8D, 2F, 10F));
         this.goalSelector.addGoal(4, new EntityAIFollowAdult(this, 1.0D));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(6, new EntityAIWanderMoC2(this, 1.0D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         //this.targetSelector.addGoal(1, new EntityAIHunt<>(this, AnimalEntity.class, true));
@@ -118,6 +118,9 @@ public class MoCEntityRaccoon extends MoCEntityTameableAnimal {
     public int nameYOffset() {
         return -30;
     }
+
+    @Override
+    public boolean isReadyToFollowOwnerPlayer() { return !this.isMovementCeased(); }
 
     @Override
     public float getSizeFactor() {

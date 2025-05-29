@@ -39,11 +39,11 @@ public class MoCEntityOgre extends MoCEntityMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new MoCEntityOgre.AIOgreAttack(this));
+        this.goalSelector.addGoal(2, new MoCEntityOgre.AIOgreAttack(this, 1.25D, false));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new MoCEntityOgre.AIOgreTarget<>(this, PlayerEntity.class));
-        this.targetSelector.addGoal(3, new MoCEntityOgre.AIOgreTarget<>(this, IronGolemEntity.class));
+        this.targetSelector.addGoal(2, new MoCEntityOgre.AIOgreTarget<>(this, PlayerEntity.class, false));
+        this.targetSelector.addGoal(3, new MoCEntityOgre.AIOgreTarget<>(this, IronGolemEntity.class, true));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -210,8 +210,8 @@ public class MoCEntityOgre extends MoCEntityMob {
     }
 
     static class AIOgreAttack extends MeleeAttackGoal {
-        public AIOgreAttack(MoCEntityOgre ogre) {
-            super(ogre, 1.0D, true);
+        public AIOgreAttack(MoCEntityOgre ogre, double speed, boolean useLongMemory) {
+            super(ogre, speed, useLongMemory);
         }
 
         @Override
@@ -233,8 +233,8 @@ public class MoCEntityOgre extends MoCEntityMob {
     }
 
     static class AIOgreTarget<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-        public AIOgreTarget(MoCEntityOgre ogre, Class<T> classTarget) {
-            super(ogre, classTarget, true);
+        public AIOgreTarget(MoCEntityOgre ogre, Class<T> classTarget, boolean checkSight) {
+            super(ogre, classTarget, checkSight);
         }
 
         @Override

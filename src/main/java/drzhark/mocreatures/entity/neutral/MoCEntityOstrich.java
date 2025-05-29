@@ -97,7 +97,7 @@ public class MoCEntityOstrich extends MoCEntityTameableAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(4, new EntityAIFollowAdult(this, 1.0D));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(6, new EntityAIWanderMoC2(this, 1.0D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
     }
@@ -573,6 +573,9 @@ public class MoCEntityOstrich extends MoCEntityTameableAnimal {
         //makes the ostrich stay by hiding their heads
         if (!stack.isEmpty() && (stack.getItem() == MoCItems.whip) && getIsTamed() && (!this.isBeingRidden())) {
             setHiding(!getHiding());
+            setIsJumping(false);
+            getNavigator().clearPath();
+            setAttackTarget(null);
             return ActionResultType.SUCCESS;
         }
 

@@ -5,6 +5,7 @@ package drzhark.mocreatures.entity.ambient;
 
 import drzhark.mocreatures.MoCreatures;
 import drzhark.mocreatures.entity.MoCEntityAmbient;
+import drzhark.mocreatures.entity.ai.EntityAIWanderMoC2;
 import drzhark.mocreatures.init.MoCLootTables;
 import drzhark.mocreatures.init.MoCSoundEvents;
 import net.minecraft.entity.EntitySize;
@@ -27,6 +28,11 @@ public class MoCEntityCricket extends MoCEntityAmbient {
     public MoCEntityCricket(EntityType<? extends MoCEntityCricket> type, World world) {
         super(type, world);
         //setSize(0.4F, 0.3F);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new EntityAIWanderMoC2(this, 1.2D));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -57,6 +63,11 @@ public class MoCEntityCricket extends MoCEntityAmbient {
     @Override
     public void livingTick() {
         super.livingTick();
+
+        if (this.isInWater()) {
+            this.setMotion(this.getMotion().mul(1.0D, 0.6D, 1.0D));
+        }
+
         if (!this.world.isRemote) {
             if (this.jumpCounter > 0 && ++this.jumpCounter > 30) {
                 this.jumpCounter = 0;

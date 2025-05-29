@@ -491,6 +491,9 @@ public class MoCEntityBird extends MoCEntityTameableAnimal {
     }
 
     @Override
+    public boolean isReadyToFollowOwnerPlayer() { return !this.isMovementCeased(); }
+
+    @Override
     public boolean isMyHealFood(ItemStack stack) {
         return !stack.isEmpty() && (stack.getItem() == Items.WHEAT_SEEDS || stack.getItem() == Items.MELON_SEEDS);
     }

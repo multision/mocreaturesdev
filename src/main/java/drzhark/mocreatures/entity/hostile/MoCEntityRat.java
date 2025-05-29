@@ -46,11 +46,11 @@ public class MoCEntityRat extends MoCEntityMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new MoCEntityRat.AIRatAttack(this));
+        this.goalSelector.addGoal(2, new MoCEntityRat.AIRatAttack(this, 1.0D, true));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new MoCEntityRat.AIRatTarget<>(this, PlayerEntity.class));
-        this.targetSelector.addGoal(3, new MoCEntityRat.AIRatTarget<>(this, IronGolemEntity.class));
+        this.targetSelector.addGoal(2, new MoCEntityRat.AIRatTarget<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(3, new MoCEntityRat.AIRatTarget<>(this, IronGolemEntity.class, true));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -196,8 +196,8 @@ public class MoCEntityRat extends MoCEntityMob {
     }
 
     static class AIRatAttack extends MeleeAttackGoal {
-        public AIRatAttack(MoCEntityRat rat) {
-            super(rat, 1.0D, true);
+        public AIRatAttack(MoCEntityRat rat, double speed, boolean useLongMemory) {
+            super(rat, speed, useLongMemory);
         }
 
         @Override
@@ -219,8 +219,8 @@ public class MoCEntityRat extends MoCEntityMob {
     }
 
     static class AIRatTarget<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-        public AIRatTarget(MoCEntityRat rat, Class<T> classTarget) {
-            super(rat, classTarget, true);
+        public AIRatTarget(MoCEntityRat rat, Class<T> classTarget, boolean checkSight) {
+            super(rat, classTarget, checkSight);
         }
 
         @Override

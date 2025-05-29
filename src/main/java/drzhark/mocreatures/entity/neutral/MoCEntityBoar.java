@@ -42,7 +42,7 @@ public class MoCEntityBoar extends MoCEntityAnimal {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new EntityAIFleeFromPlayer(this, 1.0D, 4D));
         this.goalSelector.addGoal(3, new EntityAIFollowAdult(this, 1.0D));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(7, new EntityAIWanderMoC2(this, 1.0D));
         this.goalSelector.addGoal(9, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         //this.targetSelector.addGoal(1, new EntityAIHunt<>(this, AnimalEntity.class, true));

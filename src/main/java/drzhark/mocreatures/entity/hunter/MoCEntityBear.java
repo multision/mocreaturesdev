@@ -18,6 +18,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
@@ -65,11 +66,12 @@ public class MoCEntityBear extends MoCEntityTameableAnimal {
         this.goalSelector.addGoal(2, new EntityAIPanicMoC(this, 1.0D));
         this.goalSelector.addGoal(3, new EntityAIFollowOwnerPlayer(this, 1D, 2F, 10F));
         this.goalSelector.addGoal(4, new EntityAIFollowAdult(this, 1.0D));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(6, new EntityAIWanderMoC2(this, 1.0D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         //this.targetSelector.addGoal(1, new EntityAIHunt<>(this, AnimalEntity.class, true));
-        this.targetSelector.addGoal(2, new EntityAIHunt<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(3, new EntityAIHunt<>(this, PlayerEntity.class, false));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
@@ -362,6 +364,9 @@ public class MoCEntityBear extends MoCEntityTameableAnimal {
     public int nameYOffset() {
         return (int) (((0.445D * this.getAge()) + 15D) * -1);
     }
+
+    @Override
+    public boolean isReadyToFollowOwnerPlayer() { return !this.isMovementCeased(); }
 
     @Override
     public boolean rideableEntity() {

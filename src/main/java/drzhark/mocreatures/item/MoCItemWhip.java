@@ -60,6 +60,9 @@ public class MoCItemWhip extends MoCItem {
                     MoCEntityBigCat bigCat = (MoCEntityBigCat) entity;
                     if (bigCat.getIsTamed()) {
                         bigCat.setSitting(!bigCat.getIsSitting());
+                        bigCat.setIsJumping(false);
+                        bigCat.getNavigator().clearPath();
+                        bigCat.setAttackTarget(null);
                     } else if (world.getDifficulty().getId() > 0 && bigCat.getIsAdult()) {
                         bigCat.setAttackTarget(player);
                     }
@@ -70,6 +73,9 @@ public class MoCItemWhip extends MoCItem {
                     if (horse.getIsTamed()) {
                         if (horse.getRidingEntity() == null) {
                             horse.setSitting(!horse.getIsSitting());
+                            horse.setIsJumping(false);
+                            horse.getNavigator().clearPath();
+                            horse.setAttackTarget(null);
                         } else if (horse.isNightmare()) {
                             horse.setNightmareInt(100);
                         } else if (horse.sprintCounter == 0) {
@@ -82,6 +88,9 @@ public class MoCItemWhip extends MoCItem {
                     MoCEntityKitty kitty = (MoCEntityKitty) entity;
                     if (kitty.getKittyState() > 2 && kitty.whipable()) {
                         kitty.setSitting(!kitty.getIsSitting());
+                        kitty.setIsJumping(false);
+                        kitty.getNavigator().clearPath();
+                        kitty.setAttackTarget(null);
                     }
                 }
 
@@ -89,6 +98,9 @@ public class MoCItemWhip extends MoCItem {
                     MoCEntityWyvern wyvern = (MoCEntityWyvern) entity;
                     if (wyvern.getIsTamed() && wyvern.getRidingEntity() == null && !wyvern.isOnAir()) {
                         wyvern.setSitting(!wyvern.getIsSitting());
+                        wyvern.setIsJumping(false);
+                        wyvern.getNavigator().clearPath();
+                        wyvern.setAttackTarget(null);
                     }
                 }
 
@@ -96,6 +108,9 @@ public class MoCItemWhip extends MoCItem {
                     MoCEntityPetScorpion scorpion = (MoCEntityPetScorpion) entity;
                     if (scorpion.getIsTamed() && scorpion.getRidingEntity() == null) {
                         scorpion.setSitting(!scorpion.getIsSitting());
+                        scorpion.setIsJumping(false);
+                        scorpion.getNavigator().clearPath();
+                        scorpion.setAttackTarget(null);
                     }
                 }
 
@@ -106,6 +121,9 @@ public class MoCItemWhip extends MoCItem {
                     }
                     if (ostrich.getIsTamed() && ostrich.getRidingEntity() == null) {
                         ostrich.setHiding(!ostrich.getHiding());
+                        ostrich.setIsJumping(false);
+                        ostrich.getNavigator().clearPath();
+                        ostrich.setAttackTarget(null);
                     }
                 }
 

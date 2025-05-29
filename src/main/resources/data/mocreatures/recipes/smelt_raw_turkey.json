@@ -3,7 +3,7 @@
     "ingredient": {
         "item": "mocreatures:turkeyraw"
     },
-    "result": "mocreatures:turtlecooked",
+    "result": "mocreatures:turkeycooked",
     "experience": 0.35,
     "cookingtime": 200
 }
