@@ -48,7 +48,7 @@ public class MoCEntityShark extends MoCEntityTameableAquatic {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new EntityAITargetNonTamedMoC<>(this, PlayerEntity.class, false));
         //this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
-        this.targetSelector.addGoal(3, new EntityAIHunt<>(this, PlayerEntity.class, false));
+        //this.targetSelector.addGoal(3, new EntityAIHunt<>(this, PlayerEntity.class, false));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
