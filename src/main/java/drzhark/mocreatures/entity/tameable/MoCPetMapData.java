@@ -37,11 +37,18 @@ public class MoCPetMapData extends WorldSavedData {
 
     public void removeOwnerPet(IMoCTameable pet, int petId) {
         UUID owner = pet.getOwnerId();
-        if (this.petMap.get(owner) != null && this.petMap.get(owner).removePet(petId)) {
-            this.markDirty();
-            pet.setOwnerPetId(-1);
+        MoCPetData data = this.petMap.get(owner);
+        if (data != null) {
+            boolean success = data.removePet(petId);
+            if (success) {
+                this.markDirty();
+                pet.setOwnerPetId(-1);
+            } else {
+                System.err.println("Could not remove petId " + petId + " for owner " + owner);
+            }
         }
     }
+
 
     public void updateOwnerPet(IMoCTameable pet) {
         this.markDirty();

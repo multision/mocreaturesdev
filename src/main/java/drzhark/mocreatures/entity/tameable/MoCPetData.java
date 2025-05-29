@@ -59,18 +59,25 @@ public class MoCPetData {
         for (int i = this.tamedList.size() - 1; i >= 0; i--) {
             CompoundNBT nbt = this.tamedList.getCompound(i);
             if (nbt.contains("PetId") && nbt.getInt("PetId") == id) {
-                this.tamedList.remove(i);
-                this.usedPetIds.remove(id);
-                this.idMap.clear(id); // clear bit so it can be reused again
+                if (i >= 0 && i < this.tamedList.size()) {
+                    this.tamedList.remove(i);
+                } else {
+                    System.err.println("Invalid tamedList index: " + i + " for PetId: " + id);
+                    return false;
+                }
+                this.usedPetIds.remove(Integer.valueOf(id)); // Use Integer.valueOf to ensure proper removal
+                this.idMap.clear(id);
                 if (this.usedPetIds.isEmpty()) {
-                    this.idMap.clear(); // fixes bug with ID 0 not able to be used again
+                    this.idMap.clear();
                 }
                 this.ownerData.put("PetIdData", savePetDataMap());
                 return true;
             }
         }
+        System.err.println("Failed to remove petId " + id + " - not found in tamedList");
         return false;
     }
+
 
     public CompoundNBT getPetData(int id) {
         if (this.tamedList != null) {
