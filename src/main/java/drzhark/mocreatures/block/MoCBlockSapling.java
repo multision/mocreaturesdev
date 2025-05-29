@@ -12,7 +12,7 @@ import net.minecraft.block.trees.Tree;
 
 public class MoCBlockSapling extends SaplingBlock{
 
-    public MoCBlockSapling(Tree treeIn, AbstractBlock.Properties properties) {
+    public MoCBlockSapling(AbstractBlock.Properties properties) {
         //super(treeIn, properties.sound(SoundType.PLANT).doesNotBlockMovement().tickRandomly());
         super(new WyvernTreeGrower(), AbstractBlock.Properties.create(Material.PLANTS)
                 .tickRandomly()
