@@ -25,7 +25,6 @@ public class CompatHandler {
             if (Files.exists(file.toPath())) {
                 File tempFile = new File(Minecraft.getInstance().gameDir, "config" + File.separator + "mia" + File.separator + "mocreatures_temp.cfg");
                 List<String> configEntries = new ArrayList<>();
-                configEntries.add("Enable FutureMC integration");
                 configEntries.add("Enable Hatchery integration");
                 configEntries.add("Enable Ice and Fire additions");
                 configEntries.add("Enable Industrial Foregoing integration");
@@ -70,7 +69,6 @@ public class CompatHandler {
 
 //    @SubscribeEvent //TODO TheidenHD
 //    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-//        if (ModList.get().isLoaded("futuremc")) FutureMCIntegration.addRecipes();
 //        if (ModList.get().isLoaded("thermalexpansion")) ThermalExpansionIntegration.addRecipes();
 //    }
 

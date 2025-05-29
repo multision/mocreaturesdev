@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smoking",
+    "ingredient": {
+        "item": "mocreatures:turkeyraw"
+    },
+    "result": "mocreatures:turkeycooked",
+    "experience": 0.35,
+    "cookingtime": 100
+}
