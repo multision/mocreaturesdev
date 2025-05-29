@@ -34,7 +34,6 @@ public class EntityAIHunt<T extends LivingEntity> extends NearestAttackableTarge
     public boolean shouldExecute() {
         //return ((MoCEntityAnimal) this.hunter).getIsHunting() && super.shouldExecute();
         boolean hunterHasOwner = ((MoCEntityTameableAnimal)this.hunter).getIsTamed();
-        System.out.println("Check before hunting. hunterHasOwner is "+hunterHasOwner);
         return !hunterHasOwner && ((MoCEntityAnimal) this.hunter).getIsHunting() && super.shouldExecute();
     }
 }

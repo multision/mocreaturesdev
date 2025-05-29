@@ -194,7 +194,7 @@ public class MoCModelShark<T extends MoCEntityShark> extends EntityModel<T> {
         left_fin_a_r1.setRotationPoint(0.3933F, 12.7347F, -9.897F);
         left_fin.addChild(left_fin_a_r1);
         setRotation(left_fin_a_r1, 0.9076F, 0.0F, 0.0F);
-        left_fin_a_r1.setTextureOffset(216, 23);
+        left_fin_a_r1.setTextureOffset(216, 24);
         left_fin_a_r1.addBox(-1.0F, 3.9561F, 4.8879F, 2, 11, 4, 0.0F, false);
 
         left_fin_a_r2 = new ModelRenderer(this);
@@ -221,7 +221,7 @@ public class MoCModelShark<T extends MoCEntityShark> extends EntityModel<T> {
         right_fin_a_r2.setRotationPoint(0.9246F, 12.9372F, -9.897F);
         right_fin.addChild(right_fin_a_r2);
         setRotation(right_fin_a_r2, 0.9076F, 0.0F, 0.0F);
-        right_fin_a_r2.setTextureOffset(216, 23);
+        right_fin_a_r2.setTextureOffset(216, 24);
         right_fin_a_r2.addBox(-1.0F, 3.9561F, 4.8879F, 2, 11, 4, 0.0F, false);
 
         right_fin_d_r1 = new ModelRenderer(this);
