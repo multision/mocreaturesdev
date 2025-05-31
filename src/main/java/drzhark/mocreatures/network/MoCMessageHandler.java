@@ -6,8 +6,10 @@ package drzhark.mocreatures.network;
 import drzhark.mocreatures.MoCConstants;
 import drzhark.mocreatures.network.message.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
+import org.spongepowered.asm.mixin.MixinEnvironment;
 
 public class MoCMessageHandler {
 
@@ -27,7 +29,7 @@ public class MoCMessageHandler {
         INSTANCE.messageBuilder(MoCMessageHealth.class, 6).encoder(MoCMessageHealth::encode).decoder(MoCMessageHealth::new).consumer(MoCMessageHealth::onMessage).add();
         INSTANCE.messageBuilder(MoCMessageHeart.class, 7).encoder(MoCMessageHeart::encode).decoder(MoCMessageHeart::new).consumer(MoCMessageHeart::onMessage).add();
         INSTANCE.messageBuilder(MoCMessageInstaSpawn.class, 8).encoder(MoCMessageInstaSpawn::encode).decoder(MoCMessageInstaSpawn::new).consumer(MoCMessageInstaSpawn::onMessage).add();
-        INSTANCE.messageBuilder(MoCMessageNameGUI.class, 9).encoder(MoCMessageNameGUI::encode).decoder(MoCMessageNameGUI::new).consumer(MoCMessageNameGUI::onMessage).add();
+        INSTANCE.messageBuilder(MoCMessageNameGUI.class, 9, NetworkDirection.PLAY_TO_CLIENT).encoder(MoCMessageNameGUI::encode).decoder(MoCMessageNameGUI::new).consumer(MoCMessageNameGUI::onMessage).add();
         INSTANCE.messageBuilder(MoCMessageUpdatePetName.class, 10).encoder(MoCMessageUpdatePetName::encode).decoder(MoCMessageUpdatePetName::new).consumer(MoCMessageUpdatePetName::onMessage).add();
         INSTANCE.messageBuilder(MoCMessageShuffle.class, 11).encoder(MoCMessageShuffle::encode).decoder(MoCMessageShuffle::new).consumer(MoCMessageShuffle::onMessage).add();
         INSTANCE.messageBuilder(MoCMessageTwoBytes.class, 12).encoder(MoCMessageTwoBytes::encode).decoder(MoCMessageTwoBytes::new).consumer(MoCMessageTwoBytes::onMessage).add();

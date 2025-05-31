@@ -4,6 +4,7 @@
 package drzhark.mocreatures;
 
 import com.mojang.authlib.GameProfile;
+import drzhark.mocreatures.client.ClientOnlyEventRegistrar;
 import drzhark.mocreatures.client.MoCKeyHandler;
 import drzhark.mocreatures.client.renderer.fx.MoCParticles;
 import drzhark.mocreatures.compat.CompatHandler;
@@ -26,13 +27,17 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.RegistryKey;
+import net.minecraft.util.SharedConstants;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,10 +73,7 @@ public class MoCreatures {
         MinecraftForge.EVENT_BUS.register(new MoCEventHooks());
         MinecraftForge.EVENT_BUS.register(new MoCEventHooksTerrain());
         //proxy.configInit();
-        if (true) {
-            MinecraftForge.EVENT_BUS.register(new MoCEventHooksClient());
-            MinecraftForge.EVENT_BUS.register(new MoCKeyHandler());
-        }
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientOnlyEventRegistrar::registerClientEvents);
         //MoCEntities.registerEntities();
         CompatHandler.preInit();
 
@@ -102,7 +104,6 @@ public class MoCreatures {
         MoCSoundEvents.SOUND_DEFERRED.register(modBus);
         MoCParticles.PARTICLES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
-
 
 //    @EventHandler
 //    public void postInit(FMLPostInitializationEvent event) {

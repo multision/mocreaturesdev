@@ -18,6 +18,7 @@ import java.util.Optional;
 public class CommandSpawnMoCHorse {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(Commands.literal("summonmoc")
+                .requires(source -> source.hasPermissionLevel(2))
                 .then(Commands.literal("horse")
                         .then(Commands.argument("type", StringArgumentType.word())
                                 .suggests((ctx, builder) -> {

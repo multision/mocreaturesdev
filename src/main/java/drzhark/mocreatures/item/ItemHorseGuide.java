@@ -15,6 +15,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.ITextComponent.Serializer;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ItemHorseGuide extends Item {
 
@@ -26,9 +28,14 @@ public class ItemHorseGuide extends Item {
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getHeldItem(hand);
         if (world.isRemote) {
-            Minecraft.getInstance().displayGuiScreen(new ReadBookScreen(new ReadBookScreen.WrittenBookInfo(stack)));
+            openClientBookScreen(stack);
         }
         return ActionResult.resultSuccess(stack);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void openClientBookScreen(ItemStack stack) {
+        Minecraft.getInstance().displayGuiScreen(new ReadBookScreen(new ReadBookScreen.WrittenBookInfo(stack)));
     }
 
     @Override
