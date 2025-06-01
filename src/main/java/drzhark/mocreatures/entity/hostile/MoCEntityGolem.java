@@ -233,7 +233,7 @@ public class MoCEntityGolem extends MoCEntityMob implements IEntityAdditionalSpa
      */
     public void receiveRock(BlockState state) {
         if (!this.world.isRemote) {
-            byte myBlock = translateOre(Block.getStateId(state));
+            byte myBlock = translateOre(state);
             byte slot = (byte) getRandomCubeAdj();
             if (slot != -1 && slot < 23 && myBlock != -1 && getGolemState() != 4) {
                 MoCTools.playCustomSound(this, MoCSoundEvents.ENTITY_GOLEM_ATTACH.get(), 3F);
@@ -573,7 +573,7 @@ public class MoCEntityGolem extends MoCEntityMob implements IEntityAdditionalSpa
      * Converts the world block into the golem block texture if not found,
      * returns -1
      */
-    private byte translateOre(int blockType) {
+    /*private byte translateOre(int blockType) {
         switch (blockType) {
             case 0:
             case 1:
@@ -647,7 +647,40 @@ public class MoCEntityGolem extends MoCEntityMob implements IEntityAdditionalSpa
             default:
                 return -1;
         }
+    }*/
+    private byte translateOre(BlockState state) {
+        Block block = state.getBlock();
+
+        if (block == Blocks.STONE) return 0;
+        if (block == Blocks.DIRT || block == Blocks.GRASS_BLOCK) return 1;
+        if (block == Blocks.COBBLESTONE || block == Blocks.MOSSY_COBBLESTONE) return 2;
+        if (block == Blocks.OAK_PLANKS) return 3;
+        if (block == Blocks.SAND) return 4;
+        if (block == Blocks.GRAVEL) return 5;
+        if (block == Blocks.OAK_LOG || block == Blocks.STRIPPED_OAK_LOG) return 6;
+        if (block == Blocks.GOLD_BLOCK || block == Blocks.GOLD_ORE) return 7;
+        if (block == Blocks.GLASS) return 8;
+        if (block == Blocks.BLUE_WOOL || block == Blocks.LAPIS_BLOCK) return 9;
+        if (block == Blocks.OAK_LEAVES) return 10;
+        if (block == Blocks.IRON_BLOCK || block == Blocks.IRON_ORE) return 11;
+        if (block == Blocks.BRICKS) return 12;
+        if (block == Blocks.OBSIDIAN) return 14;
+        if (block == Blocks.DIAMOND_BLOCK || block == Blocks.DIAMOND_ORE) return 15;
+        if (block == Blocks.CRAFTING_TABLE) return 16;
+        if (block == Blocks.NETHERRACK) return 23;
+        if (block == Blocks.GLOWSTONE) return 25;
+        if (block == Blocks.STONE_BRICKS || block == Blocks.CRACKED_STONE_BRICKS) return 26;
+        if (block == Blocks.NETHER_BRICKS) return 27;
+        if (block == Blocks.EMERALD_BLOCK || block == Blocks.EMERALD_ORE) return 21;
+        if (block == Blocks.PUMPKIN || block == Blocks.JACK_O_LANTERN || block == Blocks.MELON) return 22;
+        if (block == Blocks.ICE || block == Blocks.PACKED_ICE) return 18;
+        if (block == Blocks.CACTUS) return 19;
+        if (block == Blocks.CLAY) return 20;
+
+        // fallback
+        return -1;
     }
+
 
     /**
      * Provides the blockID originated from the golem's block

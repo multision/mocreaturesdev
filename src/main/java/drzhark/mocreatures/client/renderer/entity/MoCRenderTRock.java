@@ -31,7 +31,7 @@ public class MoCRenderTRock extends EntityRenderer<MoCEntityThrowableRock> {
         BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
         matrixStackIn.push();
         //matrixStackIn.translate(-0.5F, -0.55F, 0.5F);
-        matrixStackIn.translate(-0.5F, 0F, 0.5F);
+        matrixStackIn.translate(-0.5F, 0.25F, -0.5F);
         matrixStackIn.rotate(Vector3f.YN.rotationDegrees(((100 - entitytrock.acceleration) / 10F) * 36F));
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blockrendererdispatcher.renderBlock(entitytrock.getState(), matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY);
