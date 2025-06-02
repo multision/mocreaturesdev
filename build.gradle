@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 group = 'drzhark.mocreatures'
-version = '1.16.5-1.0.0'
+version = '1.16.5-1.0.0.1'
 
 java {
     archivesBaseName = 'mocreatures'

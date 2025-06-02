@@ -873,7 +873,12 @@ public class MoCEntityWyvern extends MoCEntityTameableAnimal {
             chance = MoCreatures.proxy.motherWyvernEggDropChance;
         }
         if (this.rand.nextInt(100) < chance) {
-            entityDropItem(new ItemStack(MoCItems.mocegg, 1), 0.0F);
+            int wyvernEggType = getTypeMoC() + 49;
+            ItemStack wyvernEgg = new ItemStack(MoCItems.mocegg, 1);
+
+            wyvernEgg.getOrCreateTag().putInt("EggType", wyvernEggType);
+
+            entityDropItem(wyvernEgg, 0.0F);
         }
     }
 
