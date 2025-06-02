@@ -138,7 +138,10 @@ public class MoCEntityGolem extends MoCEntityMob implements IEntityAdditionalSpa
 
                 if (this.dCounter == 120) {
                     MoCTools.playCustomSound(this, MoCSoundEvents.ENTITY_GOLEM_DYING.get(), 3F);
-                    MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with( () -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, this.world.getDimensionKey())), new MoCMessageAnimation(this.getEntityId(), 1));
+                    if (!this.world.isRemote) {
+                        ServerWorld serverWorld = (ServerWorld) this.world;
+                        MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, serverWorld.getDimensionKey())), new MoCMessageAnimation(this.getEntityId(), 1));
+                    }
                 }
 
                 if (this.dCounter > 140) {
@@ -152,7 +155,10 @@ public class MoCEntityGolem extends MoCEntityMob implements IEntityAdditionalSpa
             float distanceToTarget = this.getDistance(this.getAttackTarget());
             if (distanceToTarget > 6F) {
                 this.tCounter = 1;
-                MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with( () -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, this.world.getDimensionKey())), new MoCMessageAnimation(this.getEntityId(), 0));
+                if (!this.world.isRemote) {
+                    ServerWorld serverWorld = (ServerWorld) this.world;
+                    MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, serverWorld.getDimensionKey())), new MoCMessageAnimation(this.getEntityId(), 0));
+                }
             }
 
         }
@@ -441,7 +447,8 @@ public class MoCEntityGolem extends MoCEntityMob implements IEntityAdditionalSpa
     public void saveGolemCube(byte slot, byte value) {
         this.golemCubes[slot] = value;
         if (!this.world.isRemote && MoCreatures.proxy.worldInitDone) {
-            MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with( () -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, this.world.getDimensionKey())), new MoCMessageTwoBytes(this.getEntityId(), slot, value));
+            ServerWorld serverWorld = (ServerWorld) this.world;
+            MoCMessageHandler.INSTANCE.send(PacketDistributor.NEAR.with( () -> new PacketDistributor.TargetPoint(this.getPosX(), this.getPosY(), this.getPosZ(), 64, serverWorld.getDimensionKey())), new MoCMessageTwoBytes(this.getEntityId(), slot, value));
         }
     }
 
@@ -573,81 +580,6 @@ public class MoCEntityGolem extends MoCEntityMob implements IEntityAdditionalSpa
      * Converts the world block into the golem block texture if not found,
      * returns -1
      */
-    /*private byte translateOre(int blockType) {
-        switch (blockType) {
-            case 0:
-            case 1:
-                return 0;
-            case 18:
-                return 10; //leaves
-            case 2:
-            case 3:
-                return 1; //dirt, grass
-            case 4:
-            case 48:
-                return 2; //cobblestones
-            case 5:
-                return 3;
-            case 12:
-                return 4;
-            case 13:
-                return 5;
-            case 16:
-            case 21:
-            case 56:
-            case 74:
-            case 73:
-                return 24; //all ores are transformed into diamond ore
-            case 14:
-            case 41:
-                return 7; //ore gold and block gold = block gold
-            case 15:
-            case 42:
-                return 11;//iron ore and blocks = block iron
-            case 57:
-                return 15; //block diamond
-            case 17:
-                return 6; //wood
-            case 20:
-                return 8;
-            case 22:
-            case 35: //lapis and cloths
-                return 9;
-            case 45:
-                return 12; //brick
-            case 49:
-                return 14; //obsidian
-            case 58:
-                return 16; //workbench
-            case 61:
-            case 62:
-                return 17; //stonebench
-            case 78:
-            case 79:
-                return 18; //ice
-            case 81:
-                return 19; //cactus
-            case 82:
-                return 20; //clay
-            case 86:
-            case 91:
-            case 103:
-                return 22; //pumpkin pumpkin lantern melon
-            case 87:
-                return 23; //netherrack
-            case 89:
-                return 25; //glowstone
-            case 98:
-                return 26; //stonebrick
-            case 112:
-                return 27; //netherbrick
-            case 129:
-            case 133:
-                return 21; //emeralds
-            default:
-                return -1;
-        }
-    }*/
     private byte translateOre(BlockState state) {
         Block block = state.getBlock();
 

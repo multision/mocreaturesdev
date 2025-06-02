@@ -133,8 +133,13 @@ public class MoCEntityThrowableRock extends Entity {
                 if (master != null && entity.getEntityId() == master.getEntityId()) continue;
                 if (entity instanceof MoCEntityGolem) continue;
                 if (entity != null && !(entity instanceof LivingEntity)) continue;
-                if (master != null) entity.attackEntityFrom(DamageSource.causeMobDamage((LivingEntity) master), 4);
-                else if (entity != null) entity.attackEntityFrom(DamageSource.GENERIC, 4);
+                if (entity instanceof LivingEntity) {
+                    if (master instanceof LivingEntity) {
+                        entity.attackEntityFrom(DamageSource.causeMobDamage((LivingEntity) master), 4);
+                    } else {
+                        entity.attackEntityFrom(DamageSource.GENERIC, 4);
+                    }
+                }
             }
         }
 

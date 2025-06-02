@@ -65,8 +65,17 @@ public class MoCEntityFXVacuum extends SpriteTexturedParticle {
     }
 
     @Override
+    public float getScale(float partialTicks) {
+        float lifeRatio = (this.age + partialTicks) / this.maxAge;
+        lifeRatio = 1.0F - lifeRatio;
+        lifeRatio *= lifeRatio;
+        lifeRatio = 1.0F - lifeRatio;
+        return this.initialScale * lifeRatio;
+    }
+
+    @Override
     public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+        return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     public static class Factory implements IParticleFactory<VacuumParticleData> {
