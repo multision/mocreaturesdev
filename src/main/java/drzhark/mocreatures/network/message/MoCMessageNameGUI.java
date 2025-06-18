@@ -33,9 +33,14 @@ public class MoCMessageNameGUI {
     }
 
     public static boolean onMessage(MoCMessageNameGUI message, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> () -> handleClient(message));
-        });
+        if (DistExecutor.unsafeRunForDist(
+                () -> () -> {
+                    ctx.get().enqueueWork(() -> handleClient(message));
+                    return true;
+                },
+                () -> () -> false)) {
+            // Only executed on client side
+        }
         ctx.get().setPacketHandled(true);
         return true;
     }
