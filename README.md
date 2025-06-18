@@ -1,6 +1,7 @@
 ![DrZhark's Mo'Creatures Extended](logo_ext_small.png)
 
 ### Continued maintenance for [Mo'Creatures](https://youtu.be/a0vr5WbcZtM) in 1.16.5 & 1.20.1
+#### [1.20.1 Source Code](https://github.com/multision/mocreatures-1.20.1)
 
 **Nostalgia Team:**
 
